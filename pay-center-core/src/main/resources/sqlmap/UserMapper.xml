@@ -3,8 +3,8 @@
 <mapper namespace="com.pay.center.core.dao.UserDao">
 
     <!--auto generated Code-->
-    <resultMap id="userDO" type="com.pay.center.client.model.UserDO"></resultMap>
-    <parameterMap id="userDO" type="com.pay.center.client.model.UserDO"></parameterMap>
+    <resultMap id="userDO" type="com.pay.center.client.model.UserDO"/>
+    <parameterMap id="userDO" type="com.pay.center.client.model.UserDO"/>
     <!--auto generated Code-->
     <sql id="all_column">
         `id`,
@@ -30,15 +30,16 @@
             <if test="id != null"> id = #{id}, </if>
             <if test="loginName != null"> login_name = #{loginName}</if>
         </set>
-        WHERE id = #{id} and is_deleted = 0 and version = #{version}
+        WHERE id = #{id}
     </update>
 
     <select id="selectByLoginName" resultMap="userDO">
       select
       <include refid="all_column"/>
+      from user
       where
       <if test="loginName != null and loginName != ''">
-          login_name like CONCAT(CONCAT('%', #{loginName}),'%')
+          `login_name` like CONCAT(CONCAT('%', #{loginName}),'%')
       </if>
     </select>
 </mapper>
