@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pay.center.core.dao.UserDao">
+
+    <!--auto generated Code-->
+    <resultMap id="userDO" type="com.pay.center.client.model.UserDO"></resultMap>
+    <parameterMap id="userDO" type="com.pay.center.client.model.UserDO"></parameterMap>
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `id`,
+        `login_name`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" parameterMap="userDO">
+        INSERT INTO `user`(
+            `id`,
+            `login_name`
+        ) VALUES (
+            #{id},
+            #{loginName}
+        )
+    </insert>
+
+
+    <!--auto generated Code-->
+    <update id="update" parameterMap="userDO">
+        UPDATE `user`
+        <set>
+            <if test="id != null"> id = #{id}, </if>
+            <if test="loginName != null"> login_name = #{loginName}</if>
+        </set>
+        WHERE id = #{id} and is_deleted = 0 and version = #{version}
+    </update>
+
+    <select id="selectByLoginName" resultMap="userDO">
+      select
+      <include refid="all_column"/>
+      where
+      <if test="loginName != null and loginName != ''">
+          login_name like CONCAT(CONCAT('%', #{loginName}),'%')
+      </if>
+    </select>
+</mapper>
+
