@@ -27,7 +27,7 @@ public class UserService {
      * @param loginName 登陆名
      * @return may be null
      */
-    public UserDTO getUser(String id,String loginName){
+    public UserDTO getUser(String loginName){
         UserDTO userDTO = null;
         UserDO userDO = userDao.selectByLoginName(loginName);
         if(userDO != null){
