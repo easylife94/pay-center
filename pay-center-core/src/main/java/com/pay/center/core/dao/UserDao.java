@@ -2,12 +2,14 @@ package com.pay.center.core.dao;
 
 import com.pay.center.client.model.UserDO;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author chenwei
  * @date 2018-12-04
  */
+@Repository
 public interface UserDao {
 
     /**

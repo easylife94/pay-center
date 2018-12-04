@@ -3,7 +3,7 @@ package com.pay.center.web;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages={"com.pay.*"})
 public class PayCenterWebApplication {
 
     public static void main(String[] args) {

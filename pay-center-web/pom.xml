@@ -55,6 +55,11 @@
             <artifactId>pay-center-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.pay</groupId>
+            <artifactId>pay-center-client</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
