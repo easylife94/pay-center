@@ -12,6 +12,7 @@
     <modules>
         <module>pay-center-core</module>
         <module>pay-center-web</module>
+        <module>pay-center-client</module>
     </modules>
 
     <parent>
