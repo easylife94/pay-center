@@ -2,11 +2,16 @@ spring:
   mvc:
     static-path-pattern: /static/**
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/pay-center
+    url: jdbc:mysql://127.0.0.1:3306/pay-center?serverTimezone=UTC
     username: root
     password: root
-    max-idle: 10
-    min-idle: 5
-    max-wait: 10000
-    initial-size: 5
     driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: /mapper/*.xml
+  configuration:
+    ##启用从数据库列名A_COLUMN到驼峰大小写Java属性名aColumn的自动映射。
+    map-underscore-to-camel-case: true
+    ##允许JDBC支持生成的键
+    use-generated-keys: true
+    ##开启日志打印
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

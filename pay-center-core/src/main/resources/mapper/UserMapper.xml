@@ -36,7 +36,7 @@
     <select id="selectByLoginName" resultMap="userDO">
       select
       <include refid="all_column"/>
-      from user
+      from `user`
       where
       <if test="loginName != null and loginName != ''">
           `login_name` like CONCAT(CONCAT('%', #{loginName}),'%')
