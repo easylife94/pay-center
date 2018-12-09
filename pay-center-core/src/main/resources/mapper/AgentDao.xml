@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pay.center.core.dao.AgentDao">
+  <resultMap id="BaseResultMap" type="com.pay.center.client.model.AgentDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="agent_number" jdbcType="VARCHAR" property="agentNumber" />
+    <result column="agent_name" jdbcType="VARCHAR" property="agentName" />
+    <result column="agent_level" jdbcType="VARCHAR" property="agentLevel" />
+    <result column="agent_type" jdbcType="VARCHAR" property="agentType" />
+    <result column="parent_agent_id" jdbcType="BIGINT" property="parentAgentId" />
+    <result column="parent_agent_number" jdbcType="VARCHAR" property="parentAgentNumber" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="contact_mobile" jdbcType="VARCHAR" property="contactMobile" />
+    <result column="contact_qq" jdbcType="VARCHAR" property="contactQq" />
+    <result column="contact_email" jdbcType="VARCHAR" property="contactEmail" />
+    <result column="settle_account_id" jdbcType="BIGINT" property="settleAccountId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gmt_create, gmt_update, is_deleted, agent_number, agent_name, agent_level, agent_type, 
+    parent_agent_id, parent_agent_number, status, contact_mobile, contact_qq, contact_email, 
+    settle_account_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from agent
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from agent
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.pay.center.client.model.AgentDO">
+    insert into agent (id, gmt_create, gmt_update, 
+      is_deleted, agent_number, agent_name, 
+      agent_level, agent_type, parent_agent_id, 
+      parent_agent_number, status, contact_mobile, 
+      contact_qq, contact_email, settle_account_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=BIT}, #{agentNumber,jdbcType=VARCHAR}, #{agentName,jdbcType=VARCHAR}, 
+      #{agentLevel,jdbcType=VARCHAR}, #{agentType,jdbcType=VARCHAR}, #{parentAgentId,jdbcType=BIGINT}, 
+      #{parentAgentNumber,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{contactMobile,jdbcType=VARCHAR}, 
+      #{contactQq,jdbcType=VARCHAR}, #{contactEmail,jdbcType=VARCHAR}, #{settleAccountId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pay.center.client.model.AgentDO">
+    insert into agent
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="agentNumber != null">
+        agent_number,
+      </if>
+      <if test="agentName != null">
+        agent_name,
+      </if>
+      <if test="agentLevel != null">
+        agent_level,
+      </if>
+      <if test="agentType != null">
+        agent_type,
+      </if>
+      <if test="parentAgentId != null">
+        parent_agent_id,
+      </if>
+      <if test="parentAgentNumber != null">
+        parent_agent_number,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="contactMobile != null">
+        contact_mobile,
+      </if>
+      <if test="contactQq != null">
+        contact_qq,
+      </if>
+      <if test="contactEmail != null">
+        contact_email,
+      </if>
+      <if test="settleAccountId != null">
+        settle_account_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="agentNumber != null">
+        #{agentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="agentName != null">
+        #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentLevel != null">
+        #{agentLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="agentType != null">
+        #{agentType,jdbcType=VARCHAR},
+      </if>
+      <if test="parentAgentId != null">
+        #{parentAgentId,jdbcType=BIGINT},
+      </if>
+      <if test="parentAgentNumber != null">
+        #{parentAgentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="contactMobile != null">
+        #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null">
+        #{contactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="contactEmail != null">
+        #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="settleAccountId != null">
+        #{settleAccountId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pay.center.client.model.AgentDO">
+    update agent
+    <set>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="agentNumber != null">
+        agent_number = #{agentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="agentName != null">
+        agent_name = #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentLevel != null">
+        agent_level = #{agentLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="agentType != null">
+        agent_type = #{agentType,jdbcType=VARCHAR},
+      </if>
+      <if test="parentAgentId != null">
+        parent_agent_id = #{parentAgentId,jdbcType=BIGINT},
+      </if>
+      <if test="parentAgentNumber != null">
+        parent_agent_number = #{parentAgentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="contactMobile != null">
+        contact_mobile = #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null">
+        contact_qq = #{contactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="contactEmail != null">
+        contact_email = #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="settleAccountId != null">
+        settle_account_id = #{settleAccountId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pay.center.client.model.AgentDO">
+    update agent
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      agent_number = #{agentNumber,jdbcType=VARCHAR},
+      agent_name = #{agentName,jdbcType=VARCHAR},
+      agent_level = #{agentLevel,jdbcType=VARCHAR},
+      agent_type = #{agentType,jdbcType=VARCHAR},
+      parent_agent_id = #{parentAgentId,jdbcType=BIGINT},
+      parent_agent_number = #{parentAgentNumber,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      contact_mobile = #{contactMobile,jdbcType=VARCHAR},
+      contact_qq = #{contactQq,jdbcType=VARCHAR},
+      contact_email = #{contactEmail,jdbcType=VARCHAR},
+      settle_account_id = #{settleAccountId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

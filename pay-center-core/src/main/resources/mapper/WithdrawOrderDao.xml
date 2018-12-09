@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pay.center.core.dao.WithdrawOrderDao">
+  <resultMap id="BaseResultMap" type="com.pay.center.client.model.WithdrawOrderDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="sys_order_number" jdbcType="VARCHAR" property="sysOrderNumber" />
+    <result column="channel_order_number" jdbcType="VARCHAR" property="channelOrderNumber" />
+    <result column="source_order_number" jdbcType="VARCHAR" property="sourceOrderNumber" />
+    <result column="withdraw_type" jdbcType="VARCHAR" property="withdrawType" />
+    <result column="currencies_type" jdbcType="VARCHAR" property="currenciesType" />
+    <result column="defrayal_channel" jdbcType="VARCHAR" property="defrayalChannel" />
+    <result column="defrayal_type" jdbcType="VARCHAR" property="defrayalType" />
+    <result column="order_type" jdbcType="VARCHAR" property="orderType" />
+    <result column="auth_status" jdbcType="VARCHAR" property="authStatus" />
+    <result column="settle_status" jdbcType="VARCHAR" property="settleStatus" />
+    <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="sys_rate" jdbcType="VARCHAR" property="sysRate" />
+    <result column="sys_fee" jdbcType="DECIMAL" property="sysFee" />
+    <result column="channel_rate" jdbcType="VARCHAR" property="channelRate" />
+    <result column="channel_fee" jdbcType="DECIMAL" property="channelFee" />
+    <result column="withdraw_fee" jdbcType="DECIMAL" property="withdrawFee" />
+    <result column="withdraw_amount" jdbcType="DECIMAL" property="withdrawAmount" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gmt_create, gmt_update, is_deleted, sys_order_number, channel_order_number, source_order_number, 
+    withdraw_type, currencies_type, defrayal_channel, defrayal_type, order_type, auth_status, 
+    settle_status, total_amount, sys_rate, sys_fee, channel_rate, channel_fee, withdraw_fee, 
+    withdraw_amount, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from withdraw_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from withdraw_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.pay.center.client.model.WithdrawOrderDO">
+    insert into withdraw_order (id, gmt_create, gmt_update, 
+      is_deleted, sys_order_number, channel_order_number, 
+      source_order_number, withdraw_type, currencies_type, 
+      defrayal_channel, defrayal_type, order_type, 
+      auth_status, settle_status, total_amount, 
+      sys_rate, sys_fee, channel_rate, 
+      channel_fee, withdraw_fee, withdraw_amount, 
+      remark)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=TINYINT}, #{sysOrderNumber,jdbcType=VARCHAR}, #{channelOrderNumber,jdbcType=VARCHAR}, 
+      #{sourceOrderNumber,jdbcType=VARCHAR}, #{withdrawType,jdbcType=VARCHAR}, #{currenciesType,jdbcType=VARCHAR}, 
+      #{defrayalChannel,jdbcType=VARCHAR}, #{defrayalType,jdbcType=VARCHAR}, #{orderType,jdbcType=VARCHAR}, 
+      #{authStatus,jdbcType=VARCHAR}, #{settleStatus,jdbcType=VARCHAR}, #{totalAmount,jdbcType=DECIMAL}, 
+      #{sysRate,jdbcType=VARCHAR}, #{sysFee,jdbcType=DECIMAL}, #{channelRate,jdbcType=VARCHAR}, 
+      #{channelFee,jdbcType=DECIMAL}, #{withdrawFee,jdbcType=DECIMAL}, #{withdrawAmount,jdbcType=DECIMAL}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pay.center.client.model.WithdrawOrderDO">
+    insert into withdraw_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="sysOrderNumber != null">
+        sys_order_number,
+      </if>
+      <if test="channelOrderNumber != null">
+        channel_order_number,
+      </if>
+      <if test="sourceOrderNumber != null">
+        source_order_number,
+      </if>
+      <if test="withdrawType != null">
+        withdraw_type,
+      </if>
+      <if test="currenciesType != null">
+        currencies_type,
+      </if>
+      <if test="defrayalChannel != null">
+        defrayal_channel,
+      </if>
+      <if test="defrayalType != null">
+        defrayal_type,
+      </if>
+      <if test="orderType != null">
+        order_type,
+      </if>
+      <if test="authStatus != null">
+        auth_status,
+      </if>
+      <if test="settleStatus != null">
+        settle_status,
+      </if>
+      <if test="totalAmount != null">
+        total_amount,
+      </if>
+      <if test="sysRate != null">
+        sys_rate,
+      </if>
+      <if test="sysFee != null">
+        sys_fee,
+      </if>
+      <if test="channelRate != null">
+        channel_rate,
+      </if>
+      <if test="channelFee != null">
+        channel_fee,
+      </if>
+      <if test="withdrawFee != null">
+        withdraw_fee,
+      </if>
+      <if test="withdrawAmount != null">
+        withdraw_amount,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="sysOrderNumber != null">
+        #{sysOrderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="channelOrderNumber != null">
+        #{channelOrderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceOrderNumber != null">
+        #{sourceOrderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawType != null">
+        #{withdrawType,jdbcType=VARCHAR},
+      </if>
+      <if test="currenciesType != null">
+        #{currenciesType,jdbcType=VARCHAR},
+      </if>
+      <if test="defrayalChannel != null">
+        #{defrayalChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="defrayalType != null">
+        #{defrayalType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="authStatus != null">
+        #{authStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="settleStatus != null">
+        #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="sysRate != null">
+        #{sysRate,jdbcType=VARCHAR},
+      </if>
+      <if test="sysFee != null">
+        #{sysFee,jdbcType=DECIMAL},
+      </if>
+      <if test="channelRate != null">
+        #{channelRate,jdbcType=VARCHAR},
+      </if>
+      <if test="channelFee != null">
+        #{channelFee,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawFee != null">
+        #{withdrawFee,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawAmount != null">
+        #{withdrawAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pay.center.client.model.WithdrawOrderDO">
+    update withdraw_order
+    <set>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="sysOrderNumber != null">
+        sys_order_number = #{sysOrderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="channelOrderNumber != null">
+        channel_order_number = #{channelOrderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceOrderNumber != null">
+        source_order_number = #{sourceOrderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawType != null">
+        withdraw_type = #{withdrawType,jdbcType=VARCHAR},
+      </if>
+      <if test="currenciesType != null">
+        currencies_type = #{currenciesType,jdbcType=VARCHAR},
+      </if>
+      <if test="defrayalChannel != null">
+        defrayal_channel = #{defrayalChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="defrayalType != null">
+        defrayal_type = #{defrayalType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        order_type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="authStatus != null">
+        auth_status = #{authStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="settleStatus != null">
+        settle_status = #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="sysRate != null">
+        sys_rate = #{sysRate,jdbcType=VARCHAR},
+      </if>
+      <if test="sysFee != null">
+        sys_fee = #{sysFee,jdbcType=DECIMAL},
+      </if>
+      <if test="channelRate != null">
+        channel_rate = #{channelRate,jdbcType=VARCHAR},
+      </if>
+      <if test="channelFee != null">
+        channel_fee = #{channelFee,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawFee != null">
+        withdraw_fee = #{withdrawFee,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawAmount != null">
+        withdraw_amount = #{withdrawAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pay.center.client.model.WithdrawOrderDO">
+    update withdraw_order
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      sys_order_number = #{sysOrderNumber,jdbcType=VARCHAR},
+      channel_order_number = #{channelOrderNumber,jdbcType=VARCHAR},
+      source_order_number = #{sourceOrderNumber,jdbcType=VARCHAR},
+      withdraw_type = #{withdrawType,jdbcType=VARCHAR},
+      currencies_type = #{currenciesType,jdbcType=VARCHAR},
+      defrayal_channel = #{defrayalChannel,jdbcType=VARCHAR},
+      defrayal_type = #{defrayalType,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=VARCHAR},
+      auth_status = #{authStatus,jdbcType=VARCHAR},
+      settle_status = #{settleStatus,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      sys_rate = #{sysRate,jdbcType=VARCHAR},
+      sys_fee = #{sysFee,jdbcType=DECIMAL},
+      channel_rate = #{channelRate,jdbcType=VARCHAR},
+      channel_fee = #{channelFee,jdbcType=DECIMAL},
+      withdraw_fee = #{withdrawFee,jdbcType=DECIMAL},
+      withdraw_amount = #{withdrawAmount,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

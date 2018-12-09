@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pay.center.core.dao.SettleAccountDao">
+  <resultMap id="BaseResultMap" type="com.pay.center.client.model.SettleAccountDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="account_type" jdbcType="VARCHAR" property="accountType" />
+    <result column="bank_account_type" jdbcType="VARCHAR" property="bankAccountType" />
+    <result column="bank_account_name" jdbcType="VARCHAR" property="bankAccountName" />
+    <result column="bank_card_front_file_url" jdbcType="VARCHAR" property="bankCardFrontFileUrl" />
+    <result column="bank_card_back_file_url" jdbcType="VARCHAR" property="bankCardBackFileUrl" />
+    <result column="bank_card_all_file_url" jdbcType="VARCHAR" property="bankCardAllFileUrl" />
+    <result column="bank_mobile" jdbcType="VARCHAR" property="bankMobile" />
+    <result column="ali_account_type" jdbcType="VARCHAR" property="aliAccountType" />
+    <result column="ali_account" jdbcType="VARCHAR" property="aliAccount" />
+    <result column="legaler_cert_type" jdbcType="VARCHAR" property="legalerCertType" />
+    <result column="legaler_cert_name" jdbcType="VARCHAR" property="legalerCertName" />
+    <result column="legaler_cert_number" jdbcType="VARCHAR" property="legalerCertNumber" />
+    <result column="legaler_cert_front_file_url" jdbcType="VARCHAR" property="legalerCertFrontFileUrl" />
+    <result column="legaler_cert_back_file_url" jdbcType="VARCHAR" property="legalerCertBackFileUrl" />
+    <result column="legaler_cert_all_file_url" jdbcType="VARCHAR" property="legalerCertAllFileUrl" />
+    <result column="own_type" jdbcType="VARCHAR" property="ownType" />
+    <result column="own_id" jdbcType="BIGINT" property="ownId" />
+    <result column="own_number" jdbcType="VARCHAR" property="ownNumber" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.pay.center.client.model.SettleAccountDO">
+    <result column="bank_account_number" jdbcType="VARBINARY" property="bankAccountNumber" />
+    <result column="own_name" jdbcType="VARBINARY" property="ownName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gmt_create, gmt_update, is_deleted, account_type, bank_account_type, bank_account_name, 
+    bank_card_front_file_url, bank_card_back_file_url, bank_card_all_file_url, bank_mobile, 
+    ali_account_type, ali_account, legaler_cert_type, legaler_cert_name, legaler_cert_number, 
+    legaler_cert_front_file_url, legaler_cert_back_file_url, legaler_cert_all_file_url, 
+    own_type, own_id, own_number
+  </sql>
+  <sql id="Blob_Column_List">
+    bank_account_number, own_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from settle_account
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from settle_account
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.pay.center.client.model.SettleAccountDO">
+    insert into settle_account (id, gmt_create, gmt_update, 
+      is_deleted, account_type, bank_account_type, 
+      bank_account_name, bank_card_front_file_url, 
+      bank_card_back_file_url, bank_card_all_file_url, 
+      bank_mobile, ali_account_type, ali_account, 
+      legaler_cert_type, legaler_cert_name, legaler_cert_number, 
+      legaler_cert_front_file_url, legaler_cert_back_file_url, 
+      legaler_cert_all_file_url, own_type, own_id, 
+      own_number, bank_account_number, own_name
+      )
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=BIT}, #{accountType,jdbcType=VARCHAR}, #{bankAccountType,jdbcType=VARCHAR}, 
+      #{bankAccountName,jdbcType=VARCHAR}, #{bankCardFrontFileUrl,jdbcType=VARCHAR}, 
+      #{bankCardBackFileUrl,jdbcType=VARCHAR}, #{bankCardAllFileUrl,jdbcType=VARCHAR}, 
+      #{bankMobile,jdbcType=VARCHAR}, #{aliAccountType,jdbcType=VARCHAR}, #{aliAccount,jdbcType=VARCHAR}, 
+      #{legalerCertType,jdbcType=VARCHAR}, #{legalerCertName,jdbcType=VARCHAR}, #{legalerCertNumber,jdbcType=VARCHAR}, 
+      #{legalerCertFrontFileUrl,jdbcType=VARCHAR}, #{legalerCertBackFileUrl,jdbcType=VARCHAR}, 
+      #{legalerCertAllFileUrl,jdbcType=VARCHAR}, #{ownType,jdbcType=VARCHAR}, #{ownId,jdbcType=BIGINT}, 
+      #{ownNumber,jdbcType=VARCHAR}, #{bankAccountNumber,jdbcType=VARBINARY}, #{ownName,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pay.center.client.model.SettleAccountDO">
+    insert into settle_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="accountType != null">
+        account_type,
+      </if>
+      <if test="bankAccountType != null">
+        bank_account_type,
+      </if>
+      <if test="bankAccountName != null">
+        bank_account_name,
+      </if>
+      <if test="bankCardFrontFileUrl != null">
+        bank_card_front_file_url,
+      </if>
+      <if test="bankCardBackFileUrl != null">
+        bank_card_back_file_url,
+      </if>
+      <if test="bankCardAllFileUrl != null">
+        bank_card_all_file_url,
+      </if>
+      <if test="bankMobile != null">
+        bank_mobile,
+      </if>
+      <if test="aliAccountType != null">
+        ali_account_type,
+      </if>
+      <if test="aliAccount != null">
+        ali_account,
+      </if>
+      <if test="legalerCertType != null">
+        legaler_cert_type,
+      </if>
+      <if test="legalerCertName != null">
+        legaler_cert_name,
+      </if>
+      <if test="legalerCertNumber != null">
+        legaler_cert_number,
+      </if>
+      <if test="legalerCertFrontFileUrl != null">
+        legaler_cert_front_file_url,
+      </if>
+      <if test="legalerCertBackFileUrl != null">
+        legaler_cert_back_file_url,
+      </if>
+      <if test="legalerCertAllFileUrl != null">
+        legaler_cert_all_file_url,
+      </if>
+      <if test="ownType != null">
+        own_type,
+      </if>
+      <if test="ownId != null">
+        own_id,
+      </if>
+      <if test="ownNumber != null">
+        own_number,
+      </if>
+      <if test="bankAccountNumber != null">
+        bank_account_number,
+      </if>
+      <if test="ownName != null">
+        own_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="accountType != null">
+        #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountType != null">
+        #{bankAccountType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountName != null">
+        #{bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardFrontFileUrl != null">
+        #{bankCardFrontFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardBackFileUrl != null">
+        #{bankCardBackFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardAllFileUrl != null">
+        #{bankCardAllFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bankMobile != null">
+        #{bankMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="aliAccountType != null">
+        #{aliAccountType,jdbcType=VARCHAR},
+      </if>
+      <if test="aliAccount != null">
+        #{aliAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertType != null">
+        #{legalerCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertName != null">
+        #{legalerCertName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertNumber != null">
+        #{legalerCertNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertFrontFileUrl != null">
+        #{legalerCertFrontFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertBackFileUrl != null">
+        #{legalerCertBackFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertAllFileUrl != null">
+        #{legalerCertAllFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="ownType != null">
+        #{ownType,jdbcType=VARCHAR},
+      </if>
+      <if test="ownId != null">
+        #{ownId,jdbcType=BIGINT},
+      </if>
+      <if test="ownNumber != null">
+        #{ownNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountNumber != null">
+        #{bankAccountNumber,jdbcType=VARBINARY},
+      </if>
+      <if test="ownName != null">
+        #{ownName,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pay.center.client.model.SettleAccountDO">
+    update settle_account
+    <set>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="accountType != null">
+        account_type = #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountType != null">
+        bank_account_type = #{bankAccountType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountName != null">
+        bank_account_name = #{bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardFrontFileUrl != null">
+        bank_card_front_file_url = #{bankCardFrontFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardBackFileUrl != null">
+        bank_card_back_file_url = #{bankCardBackFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardAllFileUrl != null">
+        bank_card_all_file_url = #{bankCardAllFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bankMobile != null">
+        bank_mobile = #{bankMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="aliAccountType != null">
+        ali_account_type = #{aliAccountType,jdbcType=VARCHAR},
+      </if>
+      <if test="aliAccount != null">
+        ali_account = #{aliAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertType != null">
+        legaler_cert_type = #{legalerCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertName != null">
+        legaler_cert_name = #{legalerCertName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertNumber != null">
+        legaler_cert_number = #{legalerCertNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertFrontFileUrl != null">
+        legaler_cert_front_file_url = #{legalerCertFrontFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertBackFileUrl != null">
+        legaler_cert_back_file_url = #{legalerCertBackFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertAllFileUrl != null">
+        legaler_cert_all_file_url = #{legalerCertAllFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="ownType != null">
+        own_type = #{ownType,jdbcType=VARCHAR},
+      </if>
+      <if test="ownId != null">
+        own_id = #{ownId,jdbcType=BIGINT},
+      </if>
+      <if test="ownNumber != null">
+        own_number = #{ownNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountNumber != null">
+        bank_account_number = #{bankAccountNumber,jdbcType=VARBINARY},
+      </if>
+      <if test="ownName != null">
+        own_name = #{ownName,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.pay.center.client.model.SettleAccountDO">
+    update settle_account
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      account_type = #{accountType,jdbcType=VARCHAR},
+      bank_account_type = #{bankAccountType,jdbcType=VARCHAR},
+      bank_account_name = #{bankAccountName,jdbcType=VARCHAR},
+      bank_card_front_file_url = #{bankCardFrontFileUrl,jdbcType=VARCHAR},
+      bank_card_back_file_url = #{bankCardBackFileUrl,jdbcType=VARCHAR},
+      bank_card_all_file_url = #{bankCardAllFileUrl,jdbcType=VARCHAR},
+      bank_mobile = #{bankMobile,jdbcType=VARCHAR},
+      ali_account_type = #{aliAccountType,jdbcType=VARCHAR},
+      ali_account = #{aliAccount,jdbcType=VARCHAR},
+      legaler_cert_type = #{legalerCertType,jdbcType=VARCHAR},
+      legaler_cert_name = #{legalerCertName,jdbcType=VARCHAR},
+      legaler_cert_number = #{legalerCertNumber,jdbcType=VARCHAR},
+      legaler_cert_front_file_url = #{legalerCertFrontFileUrl,jdbcType=VARCHAR},
+      legaler_cert_back_file_url = #{legalerCertBackFileUrl,jdbcType=VARCHAR},
+      legaler_cert_all_file_url = #{legalerCertAllFileUrl,jdbcType=VARCHAR},
+      own_type = #{ownType,jdbcType=VARCHAR},
+      own_id = #{ownId,jdbcType=BIGINT},
+      own_number = #{ownNumber,jdbcType=VARCHAR},
+      bank_account_number = #{bankAccountNumber,jdbcType=VARBINARY},
+      own_name = #{ownName,jdbcType=VARBINARY}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pay.center.client.model.SettleAccountDO">
+    update settle_account
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      account_type = #{accountType,jdbcType=VARCHAR},
+      bank_account_type = #{bankAccountType,jdbcType=VARCHAR},
+      bank_account_name = #{bankAccountName,jdbcType=VARCHAR},
+      bank_card_front_file_url = #{bankCardFrontFileUrl,jdbcType=VARCHAR},
+      bank_card_back_file_url = #{bankCardBackFileUrl,jdbcType=VARCHAR},
+      bank_card_all_file_url = #{bankCardAllFileUrl,jdbcType=VARCHAR},
+      bank_mobile = #{bankMobile,jdbcType=VARCHAR},
+      ali_account_type = #{aliAccountType,jdbcType=VARCHAR},
+      ali_account = #{aliAccount,jdbcType=VARCHAR},
+      legaler_cert_type = #{legalerCertType,jdbcType=VARCHAR},
+      legaler_cert_name = #{legalerCertName,jdbcType=VARCHAR},
+      legaler_cert_number = #{legalerCertNumber,jdbcType=VARCHAR},
+      legaler_cert_front_file_url = #{legalerCertFrontFileUrl,jdbcType=VARCHAR},
+      legaler_cert_back_file_url = #{legalerCertBackFileUrl,jdbcType=VARCHAR},
+      legaler_cert_all_file_url = #{legalerCertAllFileUrl,jdbcType=VARCHAR},
+      own_type = #{ownType,jdbcType=VARCHAR},
+      own_id = #{ownId,jdbcType=BIGINT},
+      own_number = #{ownNumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pay.center.core.dao.MerchantDao">
+  <resultMap id="BaseResultMap" type="com.pay.center.client.model.MerchantDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="merchant_number" jdbcType="VARCHAR" property="merchantNumber" />
+    <result column="merchant_name" jdbcType="VARCHAR" property="merchantName" />
+    <result column="merchant_type" jdbcType="VARCHAR" property="merchantType" />
+    <result column="merchant_province" jdbcType="VARCHAR" property="merchantProvince" />
+    <result column="merchant_province_id" jdbcType="BIGINT" property="merchantProvinceId" />
+    <result column="merchant_city" jdbcType="VARCHAR" property="merchantCity" />
+    <result column="merchant_city_id" jdbcType="BIGINT" property="merchantCityId" />
+    <result column="merchant_county" jdbcType="VARCHAR" property="merchantCounty" />
+    <result column="merchant_county_id" jdbcType="BIGINT" property="merchantCountyId" />
+    <result column="merchant_status" jdbcType="BIT" property="merchantStatus" />
+    <result column="licence_number" jdbcType="VARCHAR" property="licenceNumber" />
+    <result column="licence_name" jdbcType="VARCHAR" property="licenceName" />
+    <result column="licence_address" jdbcType="VARCHAR" property="licenceAddress" />
+    <result column="licence_effective_start_date" jdbcType="DATE" property="licenceEffectiveStartDate" />
+    <result column="licence_effective_end_date" jdbcType="DATE" property="licenceEffectiveEndDate" />
+    <result column="licence_effective_long" jdbcType="BIT" property="licenceEffectiveLong" />
+    <result column="licence_business_scope" jdbcType="VARCHAR" property="licenceBusinessScope" />
+    <result column="licence_establish_date" jdbcType="DATE" property="licenceEstablishDate" />
+    <result column="licence_file_url" jdbcType="VARCHAR" property="licenceFileUrl" />
+    <result column="legaler_name" jdbcType="VARCHAR" property="legalerName" />
+    <result column="legaler_cert_type" jdbcType="VARCHAR" property="legalerCertType" />
+    <result column="legaler_cert_number" jdbcType="VARCHAR" property="legalerCertNumber" />
+    <result column="legaler_effective_start_date" jdbcType="DATE" property="legalerEffectiveStartDate" />
+    <result column="legaler_effective_end_date" jdbcType="DATE" property="legalerEffectiveEndDate" />
+    <result column="legaler_effective_long" jdbcType="BIT" property="legalerEffectiveLong" />
+    <result column="legaler_cert_front_file_url" jdbcType="VARCHAR" property="legalerCertFrontFileUrl" />
+    <result column="legaler_cert_back_file_url" jdbcType="VARCHAR" property="legalerCertBackFileUrl" />
+    <result column="legaler_cert_all_file_url" jdbcType="VARCHAR" property="legalerCertAllFileUrl" />
+    <result column="non_legaler_name" jdbcType="VARCHAR" property="nonLegalerName" />
+    <result column="non_legaler_cert_type" jdbcType="VARCHAR" property="nonLegalerCertType" />
+    <result column="non_legaler_cert_number" jdbcType="VARCHAR" property="nonLegalerCertNumber" />
+    <result column="non_legaler_effective_start_date" jdbcType="DATE" property="nonLegalerEffectiveStartDate" />
+    <result column="non_legaler_effective_end_date" jdbcType="DATE" property="nonLegalerEffectiveEndDate" />
+    <result column="non_legaler_effective_long" jdbcType="BIT" property="nonLegalerEffectiveLong" />
+    <result column="non_legaler_cert_front_file_url" jdbcType="VARCHAR" property="nonLegalerCertFrontFileUrl" />
+    <result column="non_legaler_cert_back_file_url" jdbcType="VARCHAR" property="nonLegalerCertBackFileUrl" />
+    <result column="non_legaler_cert_all_file_url" jdbcType="VARCHAR" property="nonLegalerCertAllFileUrl" />
+    <result column="wx_industry_code" jdbcType="VARCHAR" property="wxIndustryCode" />
+    <result column="wx_industry_name" jdbcType="VARCHAR" property="wxIndustryName" />
+    <result column="wx_industry_id" jdbcType="VARCHAR" property="wxIndustryId" />
+    <result column="ali_industry_code" jdbcType="VARCHAR" property="aliIndustryCode" />
+    <result column="ali_industry_name" jdbcType="VARCHAR" property="aliIndustryName" />
+    <result column="ali_industry_id" jdbcType="VARCHAR" property="aliIndustryId" />
+    <result column="sign_email" jdbcType="VARCHAR" property="signEmail" />
+    <result column="sign_mobile" jdbcType="VARCHAR" property="signMobile" />
+    <result column="sign_ip" jdbcType="VARCHAR" property="signIp" />
+    <result column="agreement_file_url" jdbcType="VARCHAR" property="agreementFileUrl" />
+    <result column="org_file_url" jdbcType="VARCHAR" property="orgFileUrl" />
+    <result column="apply_file_url" jdbcType="VARCHAR" property="applyFileUrl" />
+    <result column="sys_auth_status" jdbcType="VARCHAR" property="sysAuthStatus" />
+    <result column="sys_auth_time" jdbcType="TIMESTAMP" property="sysAuthTime" />
+    <result column="channel_auth_status" jdbcType="VARCHAR" property="channelAuthStatus" />
+    <result column="channel_auth_time" jdbcType="TIMESTAMP" property="channelAuthTime" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="member_number" jdbcType="VARCHAR" property="memberNumber" />
+    <result column="member_name" jdbcType="VARCHAR" property="memberName" />
+    <result column="channel_id" jdbcType="BIGINT" property="channelId" />
+    <result column="channel_number" jdbcType="VARCHAR" property="channelNumber" />
+    <result column="channel_name" jdbcType="VARCHAR" property="channelName" />
+    <result column="agent_id" jdbcType="BIGINT" property="agentId" />
+    <result column="agent_number" jdbcType="VARCHAR" property="agentNumber" />
+    <result column="agent_name" jdbcType="VARCHAR" property="agentName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gmt_create, gmt_update, is_deleted, merchant_number, merchant_name, merchant_type, 
+    merchant_province, merchant_province_id, merchant_city, merchant_city_id, merchant_county, 
+    merchant_county_id, merchant_status, licence_number, licence_name, licence_address, 
+    licence_effective_start_date, licence_effective_end_date, licence_effective_long, 
+    licence_business_scope, licence_establish_date, licence_file_url, legaler_name, legaler_cert_type, 
+    legaler_cert_number, legaler_effective_start_date, legaler_effective_end_date, legaler_effective_long, 
+    legaler_cert_front_file_url, legaler_cert_back_file_url, legaler_cert_all_file_url, 
+    non_legaler_name, non_legaler_cert_type, non_legaler_cert_number, non_legaler_effective_start_date, 
+    non_legaler_effective_end_date, non_legaler_effective_long, non_legaler_cert_front_file_url, 
+    non_legaler_cert_back_file_url, non_legaler_cert_all_file_url, wx_industry_code, 
+    wx_industry_name, wx_industry_id, ali_industry_code, ali_industry_name, ali_industry_id, 
+    sign_email, sign_mobile, sign_ip, agreement_file_url, org_file_url, apply_file_url, 
+    sys_auth_status, sys_auth_time, channel_auth_status, channel_auth_time, member_id, 
+    member_number, member_name, channel_id, channel_number, channel_name, agent_id, agent_number, 
+    agent_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from merchant
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from merchant
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.pay.center.client.model.MerchantDO">
+    insert into merchant (id, gmt_create, gmt_update, 
+      is_deleted, merchant_number, merchant_name, 
+      merchant_type, merchant_province, merchant_province_id, 
+      merchant_city, merchant_city_id, merchant_county, 
+      merchant_county_id, merchant_status, licence_number, 
+      licence_name, licence_address, licence_effective_start_date, 
+      licence_effective_end_date, licence_effective_long, 
+      licence_business_scope, licence_establish_date, 
+      licence_file_url, legaler_name, legaler_cert_type, 
+      legaler_cert_number, legaler_effective_start_date, 
+      legaler_effective_end_date, legaler_effective_long, 
+      legaler_cert_front_file_url, legaler_cert_back_file_url, 
+      legaler_cert_all_file_url, non_legaler_name, 
+      non_legaler_cert_type, non_legaler_cert_number, 
+      non_legaler_effective_start_date, non_legaler_effective_end_date, 
+      non_legaler_effective_long, non_legaler_cert_front_file_url, 
+      non_legaler_cert_back_file_url, non_legaler_cert_all_file_url, 
+      wx_industry_code, wx_industry_name, wx_industry_id, 
+      ali_industry_code, ali_industry_name, ali_industry_id, 
+      sign_email, sign_mobile, sign_ip, 
+      agreement_file_url, org_file_url, apply_file_url, 
+      sys_auth_status, sys_auth_time, channel_auth_status, 
+      channel_auth_time, member_id, member_number, 
+      member_name, channel_id, channel_number, 
+      channel_name, agent_id, agent_number, 
+      agent_name)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=BIT}, #{merchantNumber,jdbcType=VARCHAR}, #{merchantName,jdbcType=VARCHAR}, 
+      #{merchantType,jdbcType=VARCHAR}, #{merchantProvince,jdbcType=VARCHAR}, #{merchantProvinceId,jdbcType=BIGINT}, 
+      #{merchantCity,jdbcType=VARCHAR}, #{merchantCityId,jdbcType=BIGINT}, #{merchantCounty,jdbcType=VARCHAR}, 
+      #{merchantCountyId,jdbcType=BIGINT}, #{merchantStatus,jdbcType=BIT}, #{licenceNumber,jdbcType=VARCHAR}, 
+      #{licenceName,jdbcType=VARCHAR}, #{licenceAddress,jdbcType=VARCHAR}, #{licenceEffectiveStartDate,jdbcType=DATE}, 
+      #{licenceEffectiveEndDate,jdbcType=DATE}, #{licenceEffectiveLong,jdbcType=BIT}, 
+      #{licenceBusinessScope,jdbcType=VARCHAR}, #{licenceEstablishDate,jdbcType=DATE}, 
+      #{licenceFileUrl,jdbcType=VARCHAR}, #{legalerName,jdbcType=VARCHAR}, #{legalerCertType,jdbcType=VARCHAR}, 
+      #{legalerCertNumber,jdbcType=VARCHAR}, #{legalerEffectiveStartDate,jdbcType=DATE}, 
+      #{legalerEffectiveEndDate,jdbcType=DATE}, #{legalerEffectiveLong,jdbcType=BIT}, 
+      #{legalerCertFrontFileUrl,jdbcType=VARCHAR}, #{legalerCertBackFileUrl,jdbcType=VARCHAR}, 
+      #{legalerCertAllFileUrl,jdbcType=VARCHAR}, #{nonLegalerName,jdbcType=VARCHAR}, 
+      #{nonLegalerCertType,jdbcType=VARCHAR}, #{nonLegalerCertNumber,jdbcType=VARCHAR}, 
+      #{nonLegalerEffectiveStartDate,jdbcType=DATE}, #{nonLegalerEffectiveEndDate,jdbcType=DATE}, 
+      #{nonLegalerEffectiveLong,jdbcType=BIT}, #{nonLegalerCertFrontFileUrl,jdbcType=VARCHAR}, 
+      #{nonLegalerCertBackFileUrl,jdbcType=VARCHAR}, #{nonLegalerCertAllFileUrl,jdbcType=VARCHAR}, 
+      #{wxIndustryCode,jdbcType=VARCHAR}, #{wxIndustryName,jdbcType=VARCHAR}, #{wxIndustryId,jdbcType=VARCHAR}, 
+      #{aliIndustryCode,jdbcType=VARCHAR}, #{aliIndustryName,jdbcType=VARCHAR}, #{aliIndustryId,jdbcType=VARCHAR}, 
+      #{signEmail,jdbcType=VARCHAR}, #{signMobile,jdbcType=VARCHAR}, #{signIp,jdbcType=VARCHAR}, 
+      #{agreementFileUrl,jdbcType=VARCHAR}, #{orgFileUrl,jdbcType=VARCHAR}, #{applyFileUrl,jdbcType=VARCHAR}, 
+      #{sysAuthStatus,jdbcType=VARCHAR}, #{sysAuthTime,jdbcType=TIMESTAMP}, #{channelAuthStatus,jdbcType=VARCHAR}, 
+      #{channelAuthTime,jdbcType=TIMESTAMP}, #{memberId,jdbcType=BIGINT}, #{memberNumber,jdbcType=VARCHAR}, 
+      #{memberName,jdbcType=VARCHAR}, #{channelId,jdbcType=BIGINT}, #{channelNumber,jdbcType=VARCHAR}, 
+      #{channelName,jdbcType=VARCHAR}, #{agentId,jdbcType=BIGINT}, #{agentNumber,jdbcType=VARCHAR}, 
+      #{agentName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pay.center.client.model.MerchantDO">
+    insert into merchant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="merchantNumber != null">
+        merchant_number,
+      </if>
+      <if test="merchantName != null">
+        merchant_name,
+      </if>
+      <if test="merchantType != null">
+        merchant_type,
+      </if>
+      <if test="merchantProvince != null">
+        merchant_province,
+      </if>
+      <if test="merchantProvinceId != null">
+        merchant_province_id,
+      </if>
+      <if test="merchantCity != null">
+        merchant_city,
+      </if>
+      <if test="merchantCityId != null">
+        merchant_city_id,
+      </if>
+      <if test="merchantCounty != null">
+        merchant_county,
+      </if>
+      <if test="merchantCountyId != null">
+        merchant_county_id,
+      </if>
+      <if test="merchantStatus != null">
+        merchant_status,
+      </if>
+      <if test="licenceNumber != null">
+        licence_number,
+      </if>
+      <if test="licenceName != null">
+        licence_name,
+      </if>
+      <if test="licenceAddress != null">
+        licence_address,
+      </if>
+      <if test="licenceEffectiveStartDate != null">
+        licence_effective_start_date,
+      </if>
+      <if test="licenceEffectiveEndDate != null">
+        licence_effective_end_date,
+      </if>
+      <if test="licenceEffectiveLong != null">
+        licence_effective_long,
+      </if>
+      <if test="licenceBusinessScope != null">
+        licence_business_scope,
+      </if>
+      <if test="licenceEstablishDate != null">
+        licence_establish_date,
+      </if>
+      <if test="licenceFileUrl != null">
+        licence_file_url,
+      </if>
+      <if test="legalerName != null">
+        legaler_name,
+      </if>
+      <if test="legalerCertType != null">
+        legaler_cert_type,
+      </if>
+      <if test="legalerCertNumber != null">
+        legaler_cert_number,
+      </if>
+      <if test="legalerEffectiveStartDate != null">
+        legaler_effective_start_date,
+      </if>
+      <if test="legalerEffectiveEndDate != null">
+        legaler_effective_end_date,
+      </if>
+      <if test="legalerEffectiveLong != null">
+        legaler_effective_long,
+      </if>
+      <if test="legalerCertFrontFileUrl != null">
+        legaler_cert_front_file_url,
+      </if>
+      <if test="legalerCertBackFileUrl != null">
+        legaler_cert_back_file_url,
+      </if>
+      <if test="legalerCertAllFileUrl != null">
+        legaler_cert_all_file_url,
+      </if>
+      <if test="nonLegalerName != null">
+        non_legaler_name,
+      </if>
+      <if test="nonLegalerCertType != null">
+        non_legaler_cert_type,
+      </if>
+      <if test="nonLegalerCertNumber != null">
+        non_legaler_cert_number,
+      </if>
+      <if test="nonLegalerEffectiveStartDate != null">
+        non_legaler_effective_start_date,
+      </if>
+      <if test="nonLegalerEffectiveEndDate != null">
+        non_legaler_effective_end_date,
+      </if>
+      <if test="nonLegalerEffectiveLong != null">
+        non_legaler_effective_long,
+      </if>
+      <if test="nonLegalerCertFrontFileUrl != null">
+        non_legaler_cert_front_file_url,
+      </if>
+      <if test="nonLegalerCertBackFileUrl != null">
+        non_legaler_cert_back_file_url,
+      </if>
+      <if test="nonLegalerCertAllFileUrl != null">
+        non_legaler_cert_all_file_url,
+      </if>
+      <if test="wxIndustryCode != null">
+        wx_industry_code,
+      </if>
+      <if test="wxIndustryName != null">
+        wx_industry_name,
+      </if>
+      <if test="wxIndustryId != null">
+        wx_industry_id,
+      </if>
+      <if test="aliIndustryCode != null">
+        ali_industry_code,
+      </if>
+      <if test="aliIndustryName != null">
+        ali_industry_name,
+      </if>
+      <if test="aliIndustryId != null">
+        ali_industry_id,
+      </if>
+      <if test="signEmail != null">
+        sign_email,
+      </if>
+      <if test="signMobile != null">
+        sign_mobile,
+      </if>
+      <if test="signIp != null">
+        sign_ip,
+      </if>
+      <if test="agreementFileUrl != null">
+        agreement_file_url,
+      </if>
+      <if test="orgFileUrl != null">
+        org_file_url,
+      </if>
+      <if test="applyFileUrl != null">
+        apply_file_url,
+      </if>
+      <if test="sysAuthStatus != null">
+        sys_auth_status,
+      </if>
+      <if test="sysAuthTime != null">
+        sys_auth_time,
+      </if>
+      <if test="channelAuthStatus != null">
+        channel_auth_status,
+      </if>
+      <if test="channelAuthTime != null">
+        channel_auth_time,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="memberNumber != null">
+        member_number,
+      </if>
+      <if test="memberName != null">
+        member_name,
+      </if>
+      <if test="channelId != null">
+        channel_id,
+      </if>
+      <if test="channelNumber != null">
+        channel_number,
+      </if>
+      <if test="channelName != null">
+        channel_name,
+      </if>
+      <if test="agentId != null">
+        agent_id,
+      </if>
+      <if test="agentNumber != null">
+        agent_number,
+      </if>
+      <if test="agentName != null">
+        agent_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="merchantNumber != null">
+        #{merchantNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null">
+        #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantType != null">
+        #{merchantType,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantProvince != null">
+        #{merchantProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantProvinceId != null">
+        #{merchantProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantCity != null">
+        #{merchantCity,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCityId != null">
+        #{merchantCityId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantCounty != null">
+        #{merchantCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCountyId != null">
+        #{merchantCountyId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantStatus != null">
+        #{merchantStatus,jdbcType=BIT},
+      </if>
+      <if test="licenceNumber != null">
+        #{licenceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceName != null">
+        #{licenceName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceAddress != null">
+        #{licenceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceEffectiveStartDate != null">
+        #{licenceEffectiveStartDate,jdbcType=DATE},
+      </if>
+      <if test="licenceEffectiveEndDate != null">
+        #{licenceEffectiveEndDate,jdbcType=DATE},
+      </if>
+      <if test="licenceEffectiveLong != null">
+        #{licenceEffectiveLong,jdbcType=BIT},
+      </if>
+      <if test="licenceBusinessScope != null">
+        #{licenceBusinessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceEstablishDate != null">
+        #{licenceEstablishDate,jdbcType=DATE},
+      </if>
+      <if test="licenceFileUrl != null">
+        #{licenceFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerName != null">
+        #{legalerName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertType != null">
+        #{legalerCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertNumber != null">
+        #{legalerCertNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerEffectiveStartDate != null">
+        #{legalerEffectiveStartDate,jdbcType=DATE},
+      </if>
+      <if test="legalerEffectiveEndDate != null">
+        #{legalerEffectiveEndDate,jdbcType=DATE},
+      </if>
+      <if test="legalerEffectiveLong != null">
+        #{legalerEffectiveLong,jdbcType=BIT},
+      </if>
+      <if test="legalerCertFrontFileUrl != null">
+        #{legalerCertFrontFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertBackFileUrl != null">
+        #{legalerCertBackFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertAllFileUrl != null">
+        #{legalerCertAllFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nonLegalerName != null">
+        #{nonLegalerName,jdbcType=VARCHAR},
+      </if>
+      <if test="nonLegalerCertType != null">
+        #{nonLegalerCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="nonLegalerCertNumber != null">
+        #{nonLegalerCertNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="nonLegalerEffectiveStartDate != null">
+        #{nonLegalerEffectiveStartDate,jdbcType=DATE},
+      </if>
+      <if test="nonLegalerEffectiveEndDate != null">
+        #{nonLegalerEffectiveEndDate,jdbcType=DATE},
+      </if>
+      <if test="nonLegalerEffectiveLong != null">
+        #{nonLegalerEffectiveLong,jdbcType=BIT},
+      </if>
+      <if test="nonLegalerCertFrontFileUrl != null">
+        #{nonLegalerCertFrontFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nonLegalerCertBackFileUrl != null">
+        #{nonLegalerCertBackFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nonLegalerCertAllFileUrl != null">
+        #{nonLegalerCertAllFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="wxIndustryCode != null">
+        #{wxIndustryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wxIndustryName != null">
+        #{wxIndustryName,jdbcType=VARCHAR},
+      </if>
+      <if test="wxIndustryId != null">
+        #{wxIndustryId,jdbcType=VARCHAR},
+      </if>
+      <if test="aliIndustryCode != null">
+        #{aliIndustryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aliIndustryName != null">
+        #{aliIndustryName,jdbcType=VARCHAR},
+      </if>
+      <if test="aliIndustryId != null">
+        #{aliIndustryId,jdbcType=VARCHAR},
+      </if>
+      <if test="signEmail != null">
+        #{signEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="signMobile != null">
+        #{signMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="signIp != null">
+        #{signIp,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementFileUrl != null">
+        #{agreementFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="orgFileUrl != null">
+        #{orgFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="applyFileUrl != null">
+        #{applyFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysAuthStatus != null">
+        #{sysAuthStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sysAuthTime != null">
+        #{sysAuthTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="channelAuthStatus != null">
+        #{channelAuthStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="channelAuthTime != null">
+        #{channelAuthTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="memberNumber != null">
+        #{memberNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null">
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null">
+        #{channelId,jdbcType=BIGINT},
+      </if>
+      <if test="channelNumber != null">
+        #{channelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null">
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null">
+        #{agentId,jdbcType=BIGINT},
+      </if>
+      <if test="agentNumber != null">
+        #{agentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="agentName != null">
+        #{agentName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pay.center.client.model.MerchantDO">
+    update merchant
+    <set>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="merchantNumber != null">
+        merchant_number = #{merchantNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null">
+        merchant_name = #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantType != null">
+        merchant_type = #{merchantType,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantProvince != null">
+        merchant_province = #{merchantProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantProvinceId != null">
+        merchant_province_id = #{merchantProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantCity != null">
+        merchant_city = #{merchantCity,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCityId != null">
+        merchant_city_id = #{merchantCityId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantCounty != null">
+        merchant_county = #{merchantCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantCountyId != null">
+        merchant_county_id = #{merchantCountyId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantStatus != null">
+        merchant_status = #{merchantStatus,jdbcType=BIT},
+      </if>
+      <if test="licenceNumber != null">
+        licence_number = #{licenceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceName != null">
+        licence_name = #{licenceName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceAddress != null">
+        licence_address = #{licenceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceEffectiveStartDate != null">
+        licence_effective_start_date = #{licenceEffectiveStartDate,jdbcType=DATE},
+      </if>
+      <if test="licenceEffectiveEndDate != null">
+        licence_effective_end_date = #{licenceEffectiveEndDate,jdbcType=DATE},
+      </if>
+      <if test="licenceEffectiveLong != null">
+        licence_effective_long = #{licenceEffectiveLong,jdbcType=BIT},
+      </if>
+      <if test="licenceBusinessScope != null">
+        licence_business_scope = #{licenceBusinessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceEstablishDate != null">
+        licence_establish_date = #{licenceEstablishDate,jdbcType=DATE},
+      </if>
+      <if test="licenceFileUrl != null">
+        licence_file_url = #{licenceFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerName != null">
+        legaler_name = #{legalerName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertType != null">
+        legaler_cert_type = #{legalerCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertNumber != null">
+        legaler_cert_number = #{legalerCertNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerEffectiveStartDate != null">
+        legaler_effective_start_date = #{legalerEffectiveStartDate,jdbcType=DATE},
+      </if>
+      <if test="legalerEffectiveEndDate != null">
+        legaler_effective_end_date = #{legalerEffectiveEndDate,jdbcType=DATE},
+      </if>
+      <if test="legalerEffectiveLong != null">
+        legaler_effective_long = #{legalerEffectiveLong,jdbcType=BIT},
+      </if>
+      <if test="legalerCertFrontFileUrl != null">
+        legaler_cert_front_file_url = #{legalerCertFrontFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertBackFileUrl != null">
+        legaler_cert_back_file_url = #{legalerCertBackFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalerCertAllFileUrl != null">
+        legaler_cert_all_file_url = #{legalerCertAllFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nonLegalerName != null">
+        non_legaler_name = #{nonLegalerName,jdbcType=VARCHAR},
+      </if>
+      <if test="nonLegalerCertType != null">
+        non_legaler_cert_type = #{nonLegalerCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="nonLegalerCertNumber != null">
+        non_legaler_cert_number = #{nonLegalerCertNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="nonLegalerEffectiveStartDate != null">
+        non_legaler_effective_start_date = #{nonLegalerEffectiveStartDate,jdbcType=DATE},
+      </if>
+      <if test="nonLegalerEffectiveEndDate != null">
+        non_legaler_effective_end_date = #{nonLegalerEffectiveEndDate,jdbcType=DATE},
+      </if>
+      <if test="nonLegalerEffectiveLong != null">
+        non_legaler_effective_long = #{nonLegalerEffectiveLong,jdbcType=BIT},
+      </if>
+      <if test="nonLegalerCertFrontFileUrl != null">
+        non_legaler_cert_front_file_url = #{nonLegalerCertFrontFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nonLegalerCertBackFileUrl != null">
+        non_legaler_cert_back_file_url = #{nonLegalerCertBackFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nonLegalerCertAllFileUrl != null">
+        non_legaler_cert_all_file_url = #{nonLegalerCertAllFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="wxIndustryCode != null">
+        wx_industry_code = #{wxIndustryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wxIndustryName != null">
+        wx_industry_name = #{wxIndustryName,jdbcType=VARCHAR},
+      </if>
+      <if test="wxIndustryId != null">
+        wx_industry_id = #{wxIndustryId,jdbcType=VARCHAR},
+      </if>
+      <if test="aliIndustryCode != null">
+        ali_industry_code = #{aliIndustryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aliIndustryName != null">
+        ali_industry_name = #{aliIndustryName,jdbcType=VARCHAR},
+      </if>
+      <if test="aliIndustryId != null">
+        ali_industry_id = #{aliIndustryId,jdbcType=VARCHAR},
+      </if>
+      <if test="signEmail != null">
+        sign_email = #{signEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="signMobile != null">
+        sign_mobile = #{signMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="signIp != null">
+        sign_ip = #{signIp,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementFileUrl != null">
+        agreement_file_url = #{agreementFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="orgFileUrl != null">
+        org_file_url = #{orgFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="applyFileUrl != null">
+        apply_file_url = #{applyFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sysAuthStatus != null">
+        sys_auth_status = #{sysAuthStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sysAuthTime != null">
+        sys_auth_time = #{sysAuthTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="channelAuthStatus != null">
+        channel_auth_status = #{channelAuthStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="channelAuthTime != null">
+        channel_auth_time = #{channelAuthTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="memberNumber != null">
+        member_number = #{memberNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null">
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null">
+        channel_id = #{channelId,jdbcType=BIGINT},
+      </if>
+      <if test="channelNumber != null">
+        channel_number = #{channelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null">
+        channel_name = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null">
+        agent_id = #{agentId,jdbcType=BIGINT},
+      </if>
+      <if test="agentNumber != null">
+        agent_number = #{agentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="agentName != null">
+        agent_name = #{agentName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pay.center.client.model.MerchantDO">
+    update merchant
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      merchant_number = #{merchantNumber,jdbcType=VARCHAR},
+      merchant_name = #{merchantName,jdbcType=VARCHAR},
+      merchant_type = #{merchantType,jdbcType=VARCHAR},
+      merchant_province = #{merchantProvince,jdbcType=VARCHAR},
+      merchant_province_id = #{merchantProvinceId,jdbcType=BIGINT},
+      merchant_city = #{merchantCity,jdbcType=VARCHAR},
+      merchant_city_id = #{merchantCityId,jdbcType=BIGINT},
+      merchant_county = #{merchantCounty,jdbcType=VARCHAR},
+      merchant_county_id = #{merchantCountyId,jdbcType=BIGINT},
+      merchant_status = #{merchantStatus,jdbcType=BIT},
+      licence_number = #{licenceNumber,jdbcType=VARCHAR},
+      licence_name = #{licenceName,jdbcType=VARCHAR},
+      licence_address = #{licenceAddress,jdbcType=VARCHAR},
+      licence_effective_start_date = #{licenceEffectiveStartDate,jdbcType=DATE},
+      licence_effective_end_date = #{licenceEffectiveEndDate,jdbcType=DATE},
+      licence_effective_long = #{licenceEffectiveLong,jdbcType=BIT},
+      licence_business_scope = #{licenceBusinessScope,jdbcType=VARCHAR},
+      licence_establish_date = #{licenceEstablishDate,jdbcType=DATE},
+      licence_file_url = #{licenceFileUrl,jdbcType=VARCHAR},
+      legaler_name = #{legalerName,jdbcType=VARCHAR},
+      legaler_cert_type = #{legalerCertType,jdbcType=VARCHAR},
+      legaler_cert_number = #{legalerCertNumber,jdbcType=VARCHAR},
+      legaler_effective_start_date = #{legalerEffectiveStartDate,jdbcType=DATE},
+      legaler_effective_end_date = #{legalerEffectiveEndDate,jdbcType=DATE},
+      legaler_effective_long = #{legalerEffectiveLong,jdbcType=BIT},
+      legaler_cert_front_file_url = #{legalerCertFrontFileUrl,jdbcType=VARCHAR},
+      legaler_cert_back_file_url = #{legalerCertBackFileUrl,jdbcType=VARCHAR},
+      legaler_cert_all_file_url = #{legalerCertAllFileUrl,jdbcType=VARCHAR},
+      non_legaler_name = #{nonLegalerName,jdbcType=VARCHAR},
+      non_legaler_cert_type = #{nonLegalerCertType,jdbcType=VARCHAR},
+      non_legaler_cert_number = #{nonLegalerCertNumber,jdbcType=VARCHAR},
+      non_legaler_effective_start_date = #{nonLegalerEffectiveStartDate,jdbcType=DATE},
+      non_legaler_effective_end_date = #{nonLegalerEffectiveEndDate,jdbcType=DATE},
+      non_legaler_effective_long = #{nonLegalerEffectiveLong,jdbcType=BIT},
+      non_legaler_cert_front_file_url = #{nonLegalerCertFrontFileUrl,jdbcType=VARCHAR},
+      non_legaler_cert_back_file_url = #{nonLegalerCertBackFileUrl,jdbcType=VARCHAR},
+      non_legaler_cert_all_file_url = #{nonLegalerCertAllFileUrl,jdbcType=VARCHAR},
+      wx_industry_code = #{wxIndustryCode,jdbcType=VARCHAR},
+      wx_industry_name = #{wxIndustryName,jdbcType=VARCHAR},
+      wx_industry_id = #{wxIndustryId,jdbcType=VARCHAR},
+      ali_industry_code = #{aliIndustryCode,jdbcType=VARCHAR},
+      ali_industry_name = #{aliIndustryName,jdbcType=VARCHAR},
+      ali_industry_id = #{aliIndustryId,jdbcType=VARCHAR},
+      sign_email = #{signEmail,jdbcType=VARCHAR},
+      sign_mobile = #{signMobile,jdbcType=VARCHAR},
+      sign_ip = #{signIp,jdbcType=VARCHAR},
+      agreement_file_url = #{agreementFileUrl,jdbcType=VARCHAR},
+      org_file_url = #{orgFileUrl,jdbcType=VARCHAR},
+      apply_file_url = #{applyFileUrl,jdbcType=VARCHAR},
+      sys_auth_status = #{sysAuthStatus,jdbcType=VARCHAR},
+      sys_auth_time = #{sysAuthTime,jdbcType=TIMESTAMP},
+      channel_auth_status = #{channelAuthStatus,jdbcType=VARCHAR},
+      channel_auth_time = #{channelAuthTime,jdbcType=TIMESTAMP},
+      member_id = #{memberId,jdbcType=BIGINT},
+      member_number = #{memberNumber,jdbcType=VARCHAR},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      channel_id = #{channelId,jdbcType=BIGINT},
+      channel_number = #{channelNumber,jdbcType=VARCHAR},
+      channel_name = #{channelName,jdbcType=VARCHAR},
+      agent_id = #{agentId,jdbcType=BIGINT},
+      agent_number = #{agentNumber,jdbcType=VARCHAR},
+      agent_name = #{agentName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

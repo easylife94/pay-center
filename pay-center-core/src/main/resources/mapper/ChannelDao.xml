@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pay.center.core.dao.ChannelDao">
+  <resultMap id="BaseResultMap" type="com.pay.center.client.model.ChannelDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="channel_type" jdbcType="VARCHAR" property="channelType" />
+    <result column="channel_mapped" jdbcType="VARCHAR" property="channelMapped" />
+    <result column="channel_number" jdbcType="VARCHAR" property="channelNumber" />
+    <result column="channel_name" jdbcType="VARCHAR" property="channelName" />
+    <result column="channel_short_name" jdbcType="VARCHAR" property="channelShortName" />
+    <result column="channel_pattern" jdbcType="VARCHAR" property="channelPattern" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gmt_create, gmt_update, is_deleted, channel_type, channel_mapped, channel_number, 
+    channel_name, channel_short_name, channel_pattern, status, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from channel
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from channel
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.pay.center.client.model.ChannelDO">
+    insert into channel (id, gmt_create, gmt_update, 
+      is_deleted, channel_type, channel_mapped, 
+      channel_number, channel_name, channel_short_name, 
+      channel_pattern, status, remark
+      )
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=BIT}, #{channelType,jdbcType=VARCHAR}, #{channelMapped,jdbcType=VARCHAR}, 
+      #{channelNumber,jdbcType=VARCHAR}, #{channelName,jdbcType=VARCHAR}, #{channelShortName,jdbcType=VARCHAR}, 
+      #{channelPattern,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pay.center.client.model.ChannelDO">
+    insert into channel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="channelType != null">
+        channel_type,
+      </if>
+      <if test="channelMapped != null">
+        channel_mapped,
+      </if>
+      <if test="channelNumber != null">
+        channel_number,
+      </if>
+      <if test="channelName != null">
+        channel_name,
+      </if>
+      <if test="channelShortName != null">
+        channel_short_name,
+      </if>
+      <if test="channelPattern != null">
+        channel_pattern,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="channelType != null">
+        #{channelType,jdbcType=VARCHAR},
+      </if>
+      <if test="channelMapped != null">
+        #{channelMapped,jdbcType=VARCHAR},
+      </if>
+      <if test="channelNumber != null">
+        #{channelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null">
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelShortName != null">
+        #{channelShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelPattern != null">
+        #{channelPattern,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pay.center.client.model.ChannelDO">
+    update channel
+    <set>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="channelType != null">
+        channel_type = #{channelType,jdbcType=VARCHAR},
+      </if>
+      <if test="channelMapped != null">
+        channel_mapped = #{channelMapped,jdbcType=VARCHAR},
+      </if>
+      <if test="channelNumber != null">
+        channel_number = #{channelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null">
+        channel_name = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelShortName != null">
+        channel_short_name = #{channelShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelPattern != null">
+        channel_pattern = #{channelPattern,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pay.center.client.model.ChannelDO">
+    update channel
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      channel_type = #{channelType,jdbcType=VARCHAR},
+      channel_mapped = #{channelMapped,jdbcType=VARCHAR},
+      channel_number = #{channelNumber,jdbcType=VARCHAR},
+      channel_name = #{channelName,jdbcType=VARCHAR},
+      channel_short_name = #{channelShortName,jdbcType=VARCHAR},
+      channel_pattern = #{channelPattern,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
