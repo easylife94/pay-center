@@ -1,6 +1,7 @@
 package com.pay.center.core.dao;
 
 import com.pay.center.client.model.UserDO;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserDao {
     int deleteByPrimaryKey(Long id);
@@ -14,4 +15,6 @@ public interface UserDao {
     int updateByPrimaryKeySelective(UserDO record);
 
     int updateByPrimaryKey(UserDO record);
+
+    UserDO selectByLoginName(@Param("loginName") String loginName);
 }

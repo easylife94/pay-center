@@ -6,7 +6,11 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-
+  freemarker:
+    cache: false
+    check-template-location: true
+    charset: utf-8
+    suffix: .html
 mybatis:
   mapper-locations: /mapper/*.xml
   configuration:
