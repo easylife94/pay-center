@@ -9,6 +9,7 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,40 +31,46 @@ public class UserAccessController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public ModelAndView login(ServletRequest request,String loginName, String password) {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ModelAndView login(ServletRequest request, String loginName, String password) {
         UsernamePasswordToken token = new UsernamePasswordToken(loginName, password);
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(token);
         } catch (IncorrectCredentialsException ice) {
             // 捕获密码错误异常
-            ModelAndView mv = new ModelAndView("error");
+            ModelAndView mv = new ModelAndView("login");
             mv.addObject("message", "password error!");
             return mv;
         } catch (UnknownAccountException uae) {
             // 捕获未知用户名异常
-            ModelAndView mv = new ModelAndView("error");
+            ModelAndView mv = new ModelAndView("login");
             mv.addObject("message", "username error!");
             return mv;
         } catch (ExcessiveAttemptsException eae) {
             // 捕获错误登录过多的异常
-            ModelAndView mv = new ModelAndView("error");
+            ModelAndView mv = new ModelAndView("login");
             mv.addObject("message", "times error");
             return mv;
         }
+
         UserDO user = userService.findByLoginName(loginName);
         subject.getSession().setAttribute("user", user);
-        String url = WebUtils.getSavedRequest(request).getRequestUrl();
-        if(StringUtils.isNotBlank(url)){
-        }else{
-            url = "/index";
+
+        SavedRequest savedRequest = WebUtils.getSavedRequest(request);
+        if (savedRequest != null) {
+            String url = savedRequest.getRequestUrl();
+            if (StringUtils.isBlank(url)) {
+                url = "/index";
+            }
+            return new ModelAndView("redirect:" + url);
+        } else {
+            return new ModelAndView("/index");
         }
-        return new ModelAndView("redirect:"+url);
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String loginPage(){
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginPage() {
         return "login";
     }
 }

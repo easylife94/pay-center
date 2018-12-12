@@ -14,6 +14,7 @@ import java.util.Map;
 
 /**
  * shiro配置类
+ *
  * @author chenwei
  * @date 2018-12-08
  */
@@ -28,7 +29,6 @@ public class ShiroConfig {
         hashedCredentialsMatcher.setHashAlgorithmName("md5");
         //散列的次数，比如散列两次，相当于 md5(md5(""));
         hashedCredentialsMatcher.setHashIterations(1);
-        hashedCredentialsMatcher.setHashSalted(true);
         return hashedCredentialsMatcher;
     }
 
@@ -41,6 +41,7 @@ public class ShiroConfig {
 
     /**
      * 缓存管理器
+     *
      * @return
      */
     @Bean
@@ -52,6 +53,7 @@ public class ShiroConfig {
 
     /**
      * 安全管理器
+     *
      * @return
      */
     @Bean
@@ -64,11 +66,12 @@ public class ShiroConfig {
 
     /**
      * shiro过滤器
+     *
      * @param securityManager
      * @return
      */
     @Bean
-    public ShiroFilterFactoryBean initShiroFilter(SecurityManager securityManager){
+    public ShiroFilterFactoryBean initShiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
