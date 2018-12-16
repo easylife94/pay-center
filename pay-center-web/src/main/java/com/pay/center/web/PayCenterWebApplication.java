@@ -4,7 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages={"com.pay.*"})
+@SpringBootApplication(scanBasePackages = {"com.pay.*"})
 @MapperScan("com.pay.center.core.dao")
 public class PayCenterWebApplication {
 

@@ -18,10 +18,11 @@ public class UserService {
 
     /**
      * 根据登陆账号查找
+     *
      * @param loginName
      * @return
      */
-    public UserDO findByLoginName(String loginName){
+    public UserDO findByLoginName(String loginName) {
         return userDao.selectByLoginName(loginName);
     }
 }

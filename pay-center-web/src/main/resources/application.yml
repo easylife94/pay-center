@@ -11,11 +11,16 @@ spring:
     check-template-location: true
     charset: utf-8
     suffix: .ftl
+
+  ##rabbitmq
   rabbitmq:
     host: localhost
     port: 5672
-    username: guest
-    password: guest
+    username: pay_guest
+    password: pay_guest
+    virtual-host: /pay
+    publisher-confirms: true
+
 mybatis:
   mapper-locations: /mapper/*.xml
   configuration:
