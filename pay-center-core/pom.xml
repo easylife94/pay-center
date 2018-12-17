@@ -4,7 +4,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>pay-center-core</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>pay-center-core</name>
@@ -31,25 +30,32 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.pay</groupId>
-            <artifactId>pay-center-client</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.pay</groupId>
-            <artifactId>pay-assist-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+
+        <!-- mybaits -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.4.6</version>
             <scope>compile</scope>
+        </dependency>
+
+        <!-- pay-client -->
+        <dependency>
+            <groupId>com.pay</groupId>
+            <artifactId>pay-center-client</artifactId>
+        </dependency>
+
+        <!-- pay-assist-->
+        <dependency>
+            <groupId>com.pay</groupId>
+            <artifactId>pay-assist-client</artifactId>
+        </dependency>
+
+        <!-- test-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

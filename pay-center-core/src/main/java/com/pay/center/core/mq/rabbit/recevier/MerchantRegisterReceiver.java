@@ -2,6 +2,7 @@ package com.pay.center.core.mq.rabbit.recevier;
 
 import com.pay.center.client.constants.PayCenterMqNames;
 import com.pay.center.client.dto.mq.RegisterMerchantMsgDTO;
+import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
@@ -21,9 +22,12 @@ public class MerchantRegisterReceiver {
     public static final Logger logger = LoggerFactory.getLogger(MerchantRegisterReceiver.class);
 
     @RabbitHandler
-    public void registerMerchant(RegisterMerchantMsgDTO registerMerchantMsgDTO) {
-
-        logger.info("收到进件商户消息：{}",registerMerchantMsgDTO);
+    public void registerMerchant(RegisterMerchantMsgDTO registerMerchantMsgDTO, Channel channel) {
+        try {
+            logger.info("收到进件商户消息：{}", registerMerchantMsgDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
