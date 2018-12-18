@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      uri: http://pay-config-server:8888
+      label: master
+      profile: pay-center
