@@ -3,9 +3,11 @@ package com.pay.center.web;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication(scanBasePackages = {"com.pay.*"})
 @MapperScan("com.pay.center.core.dao")
+@EnableEurekaClient
 public class PayCenterWebApplication {
 
     public static void main(String[] args) {
