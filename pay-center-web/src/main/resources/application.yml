@@ -23,3 +23,4 @@ mybatis:
     use-generated-keys: true
     ##开启日志打印
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

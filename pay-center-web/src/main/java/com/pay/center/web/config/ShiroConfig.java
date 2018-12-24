@@ -1,11 +1,14 @@
 package com.pay.center.web.config;
 
 import com.pay.center.web.security.shiro.DbShiroRealm;
+import com.pay.center.web.security.shiro.ShiroRedisSessionDAO;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -52,15 +55,38 @@ public class ShiroConfig {
     }
 
     /**
+     * 会话管理器
+     *
+     * @return
+     */
+    @Bean
+    public SessionManager sessionManager(ShiroRedisSessionDAO sessionDao) {
+        DefaultWebSessionManager manager = new DefaultWebSessionManager();
+        // 加入缓存管理器
+        manager.setCacheManager(cacheManager());
+        // 设置SessionDao
+        manager.setSessionDAO(sessionDao);
+        // 删除过期的session
+        manager.setDeleteInvalidSessions(true);
+        // 设置全局session超时时间
+        manager.setGlobalSessionTimeout(sessionDao.getExpireTime());
+        // 是否定时检查session
+        manager.setSessionValidationSchedulerEnabled(true);
+
+        return manager;
+    }
+
+    /**
      * 安全管理器
      *
      * @return
      */
     @Bean
-    public SecurityManager securityManager() {
+    public SecurityManager securityManager(ShiroRedisSessionDAO sessionDao) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(dbShiroRealm());
         securityManager.setCacheManager(cacheManager());
+        securityManager.setSessionManager(sessionManager(sessionDao));
         return securityManager;
     }
 

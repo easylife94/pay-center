@@ -3,7 +3,7 @@ package com.pay.center.client.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class WithdrawOrderDO {
+public class WithdrawOrderDO extends Entity {
     private Long id;
 
     private Date gmtCreate;

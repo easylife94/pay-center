@@ -2,7 +2,7 @@ package com.pay.center.client.model;
 
 import java.util.Date;
 
-public class UserDO {
+public class UserDO extends Entity {
     private Long id;
 
     private Date gmtCreate;
