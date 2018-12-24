@@ -5,7 +5,6 @@ spring:
         enabled: true
         service-id: pay-config-server
       profile: pay-center
-
 eureka:
   client:
     service-url:
