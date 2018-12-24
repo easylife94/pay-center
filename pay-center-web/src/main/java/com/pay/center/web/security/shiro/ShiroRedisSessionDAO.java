@@ -46,17 +46,17 @@ public class ShiroRedisSessionDAO extends AbstractSessionDAO {
 
     @Override
     protected Serializable doCreate(Session session) {
-        logger.info("[Shiro session dao]创建会话");
+        logger.debug("[Shiro session dao]创建会话");
         Serializable sessionId = this.generateSessionId(session);
-        logger.info("[Shiro session dao]sessionId:{}", sessionId);
+        logger.debug("[Shiro session dao]sessionId:{}", sessionId);
         this.assignSessionId(session, sessionId);
-        redisTemplate.opsForValue().set(getSessionKey(session.getId()),session, expireTime, TimeUnit.MILLISECONDS);
+        redisTemplate.opsForValue().set(getSessionKey(session.getId()), session, expireTime, TimeUnit.MILLISECONDS);
         return sessionId;
     }
 
     @Override
     protected Session doReadSession(Serializable sessionId) {
-        logger.info("[Shiro session dao]读取会话，sessionId:{}", sessionId);
+        logger.debug("[Shiro session dao]读取会话，sessionId:{}", sessionId);
         if (sessionId == null) {
             return null;
         }
@@ -65,7 +65,7 @@ public class ShiroRedisSessionDAO extends AbstractSessionDAO {
 
     @Override
     public void update(Session session) throws UnknownSessionException {
-        logger.info("[Shiro session dao]更新会话，session:{}", session);
+        logger.debug("[Shiro session dao]更新会话，session:{}", session);
         if (session == null || session.getId() == null) {
             return;
         }
@@ -75,7 +75,7 @@ public class ShiroRedisSessionDAO extends AbstractSessionDAO {
 
     @Override
     public void delete(Session session) {
-        logger.info("[Shiro session dao]删除会话，session:{}", session);
+        logger.debug("[Shiro session dao]删除会话，session:{}", session);
         if (null == session) {
             return;
         }
@@ -84,7 +84,7 @@ public class ShiroRedisSessionDAO extends AbstractSessionDAO {
 
     @Override
     public Collection<Session> getActiveSessions() {
-        return redisTemplate.keys("*");
+        return redisTemplate.keys(getSessionKey("*"));
     }
 
     /**
