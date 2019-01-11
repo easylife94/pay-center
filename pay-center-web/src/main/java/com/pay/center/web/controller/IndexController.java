@@ -2,6 +2,8 @@ package com.pay.center.web.controller;
 
 import com.pay.center.client.dto.mq.RegisterMerchantMsgDTO;
 import com.pay.center.core.mq.rabbit.RabbitMqSender;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundValueOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,28 +18,30 @@ import javax.annotation.Resource;
  * @date 2018/12/4 17:48
  */
 @Controller
-public class IndexController {
+public class IndexController extends BaseController {
 
     @Autowired
-    private RabbitMqSender rabbitMqSender;
+    public RabbitMqSender rabbitMqSender;
     @Resource
-    private RedisTemplate<String,String> redisTemplate;
+    public RedisTemplate<String, String> redisTemplate;
 
     @RequestMapping("index")
-    private String index() {
+    public String index() {
         return "/static/index.html";
     }
 
     @RequestMapping("/hi")
     @ResponseBody
-    private String hi(String name) {
+    @RequiresUser
+    @RequiresPermissions("user:hi")
+    public String hi(String name) {
         rabbitMqSender.sayHi(name);
         return "ok";
     }
 
     @RequestMapping("register")
     @ResponseBody
-    private String register(Long merchantId) {
+    public String register(Long merchantId) {
         RegisterMerchantMsgDTO registerMerchantMsgDTO = new RegisterMerchantMsgDTO(merchantId);
         rabbitMqSender.sendRegisterMerchant(registerMerchantMsgDTO);
         return "ok";
@@ -45,7 +49,7 @@ public class IndexController {
 
     @RequestMapping("/redis/put")
     @ResponseBody
-    private String putRedis(String key,String value){
+    public String putRedis(String key, String value) {
         BoundValueOperations<String, String> operations = redisTemplate.boundValueOps(key);
         operations.set(value);
         return "ok";
@@ -53,10 +57,8 @@ public class IndexController {
 
     @RequestMapping("/redis/get")
     @ResponseBody
-    private String putRedis(String key){
+    public String putRedis(String key) {
         BoundValueOperations<String, String> operations = redisTemplate.boundValueOps(key);
         return operations.get();
     }
-
-
 }
