@@ -4,6 +4,7 @@ server:
 spring:
   mvc:
     static-path-pattern: /static/**
+    dispatch-options-request: false
   application:
     name: pay-center
 

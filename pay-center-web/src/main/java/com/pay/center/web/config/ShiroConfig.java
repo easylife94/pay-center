@@ -1,5 +1,6 @@
 package com.pay.center.web.config;
 
+import com.pay.center.web.security.shiro.CorsFormAuthenticationFilter;
 import com.pay.center.web.security.shiro.DbShiroRealm;
 import com.pay.center.web.security.shiro.ShiroRedisSessionDAO;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -104,6 +106,9 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean initShiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
+
+        Map<String, Filter> filters = shiroFilterFactoryBean.getFilters();
+        filters.put("authc",new CorsFormAuthenticationFilter());
 
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/logout", "logout");

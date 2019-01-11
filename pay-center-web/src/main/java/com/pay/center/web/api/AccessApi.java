@@ -29,7 +29,7 @@ public class AccessApi {
     private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ApiResultVO<UserLoginResultVO> login(@RequestBody UserLoginVO userLoginVO) {
+    public ApiResultVO<UserLoginResultVO> login(UserLoginVO userLoginVO) {
         ApiResultVO<UserLoginResultVO> result = new ApiResultVO<>();
         UsernamePasswordToken token = new UsernamePasswordToken(userLoginVO.getLoginName(), userLoginVO.getPassword());
         Subject subject = SecurityUtils.getSubject();
@@ -57,4 +57,11 @@ public class AccessApi {
         return result;
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public ApiResultVO logout(){
+        ApiResultVO apiResultVO = new ApiResultVO();
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return apiResultVO;
+    }
 }
