@@ -6,6 +6,8 @@ import com.pay.center.client.vo.ApiResultVO;
 import com.pay.center.client.vo.UserLoginResultVO;
 import com.pay.center.client.vo.UserLoginVO;
 import com.pay.center.core.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -21,13 +23,12 @@ import org.springframework.web.bind.annotation.*;
  * @author chenwei
  * @date 2019/1/10 15:00
  */
+@Api(description = "权限接口")
 @RestController
 @RequestMapping("/api/access")
 public class AccessApi {
 
-    @Autowired
-    private UserService userService;
-
+    @ApiOperation(value = "登陆" , notes = "登陆，并获取登陆信息，响应携带shiro cookie")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ApiResultVO<UserLoginResultVO> login(UserLoginVO userLoginVO) {
         ApiResultVO<UserLoginResultVO> result = new ApiResultVO<>();
@@ -57,8 +58,11 @@ public class AccessApi {
         return result;
     }
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public ApiResultVO logout(){
+    public ApiResultVO logout() {
         ApiResultVO apiResultVO = new ApiResultVO();
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
