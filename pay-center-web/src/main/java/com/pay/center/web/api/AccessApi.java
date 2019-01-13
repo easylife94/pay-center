@@ -1,6 +1,6 @@
 package com.pay.center.web.api;
 
-import com.pay.center.client.constant.ApiResultEnum;
+import com.pay.center.client.constants.ApiResultEnum;
 import com.pay.center.client.model.UserDO;
 import com.pay.center.client.vo.ApiResultVO;
 import com.pay.center.client.vo.UserLoginResultVO;

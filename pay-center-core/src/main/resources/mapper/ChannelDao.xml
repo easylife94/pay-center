@@ -14,13 +14,17 @@
     <result column="channel_pattern" jdbcType="VARCHAR" property="channelPattern" />
     <result column="status" jdbcType="BIT" property="status" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="platform_id" jdbcType="BIGINT" property="platformId" />
+    <result column="platform_number" jdbcType="VARCHAR" property="platformNumber" />
+    <result column="platform_name" jdbcType="VARCHAR" property="platformName" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, gmt_create, gmt_update, is_deleted, channel_type, channel_mapped, channel_number, 
-    channel_name, channel_short_name, channel_pattern, status, remark
+    id, gmt_create, gmt_update, is_deleted, channel_type, channel_mapped, channel_number,
+    channel_name, channel_short_name, channel_pattern, status, remark, platform_id, platform_number,
+    platform_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from channel
     where id = #{id,jdbcType=BIGINT}
@@ -30,16 +34,18 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.pay.center.client.model.ChannelDO">
-    insert into channel (id, gmt_create, gmt_update, 
-      is_deleted, channel_type, channel_mapped, 
-      channel_number, channel_name, channel_short_name, 
-      channel_pattern, status, remark
-      )
-    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP}, 
-      #{isDeleted,jdbcType=BIT}, #{channelType,jdbcType=VARCHAR}, #{channelMapped,jdbcType=VARCHAR}, 
-      #{channelNumber,jdbcType=VARCHAR}, #{channelName,jdbcType=VARCHAR}, #{channelShortName,jdbcType=VARCHAR}, 
-      #{channelPattern,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}
-      )
+    insert into channel (id, gmt_create, gmt_update,
+                         is_deleted, channel_type, channel_mapped,
+                         channel_number, channel_name, channel_short_name,
+                         channel_pattern, status, remark,
+                         platform_id, platform_number, platform_name
+    )
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP},
+            #{isDeleted,jdbcType=BIT}, #{channelType,jdbcType=VARCHAR}, #{channelMapped,jdbcType=VARCHAR},
+            #{channelNumber,jdbcType=VARCHAR}, #{channelName,jdbcType=VARCHAR}, #{channelShortName,jdbcType=VARCHAR},
+            #{channelPattern,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{remark,jdbcType=VARCHAR},
+            #{platformId,jdbcType=BIGINT}, #{platformNumber,jdbcType=VARCHAR}, #{platformName,jdbcType=VARCHAR}
+           )
   </insert>
   <insert id="insertSelective" parameterType="com.pay.center.client.model.ChannelDO">
     insert into channel
@@ -80,6 +86,15 @@
       <if test="remark != null">
         remark,
       </if>
+      <if test="platformId != null">
+        platform_id,
+      </if>
+      <if test="platformNumber != null">
+        platform_number,
+      </if>
+      <if test="platformName != null">
+        platform_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -117,6 +132,15 @@
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="platformId != null">
+        #{platformId,jdbcType=BIGINT},
+      </if>
+      <if test="platformNumber != null">
+        #{platformNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null">
+        #{platformName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -156,22 +180,34 @@
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
+      <if test="platformId != null">
+        platform_id = #{platformId,jdbcType=BIGINT},
+      </if>
+      <if test="platformNumber != null">
+        platform_number = #{platformNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null">
+        platform_name = #{platformName,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.pay.center.client.model.ChannelDO">
     update channel
     set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
-      is_deleted = #{isDeleted,jdbcType=BIT},
-      channel_type = #{channelType,jdbcType=VARCHAR},
-      channel_mapped = #{channelMapped,jdbcType=VARCHAR},
-      channel_number = #{channelNumber,jdbcType=VARCHAR},
-      channel_name = #{channelName,jdbcType=VARCHAR},
-      channel_short_name = #{channelShortName,jdbcType=VARCHAR},
-      channel_pattern = #{channelPattern,jdbcType=VARCHAR},
-      status = #{status,jdbcType=BIT},
-      remark = #{remark,jdbcType=VARCHAR}
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+        is_deleted = #{isDeleted,jdbcType=BIT},
+        channel_type = #{channelType,jdbcType=VARCHAR},
+        channel_mapped = #{channelMapped,jdbcType=VARCHAR},
+        channel_number = #{channelNumber,jdbcType=VARCHAR},
+        channel_name = #{channelName,jdbcType=VARCHAR},
+        channel_short_name = #{channelShortName,jdbcType=VARCHAR},
+        channel_pattern = #{channelPattern,jdbcType=VARCHAR},
+        status = #{status,jdbcType=BIT},
+        remark = #{remark,jdbcType=VARCHAR},
+        platform_id = #{platformId,jdbcType=BIGINT},
+        platform_number = #{platformNumber,jdbcType=VARCHAR},
+        platform_name = #{platformName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

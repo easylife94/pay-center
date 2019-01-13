@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/channel")
-public class ChannelController {
+public class ChannelController extends BaseController{
 
     @RequiresUser
-    @RequiresPermissions("get")
     @RequestMapping(value = "/list",method = RequestMethod.POST)
     private ApiResultVO list(){
         ApiResultVO resultVO = new ApiResultVO();

@@ -1,7 +1,7 @@
 package com.pay.center.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.pay.center.client.constant.ApiResultEnum;
+import com.pay.center.client.constants.ApiResultEnum;
 import com.pay.center.client.vo.ApiResultVO;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authz.AuthorizationException;

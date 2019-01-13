@@ -1,4 +1,4 @@
-package com.pay.center.client.constant;
+package com.pay.center.client.constants;
 
 /**
  * API返回结果枚举

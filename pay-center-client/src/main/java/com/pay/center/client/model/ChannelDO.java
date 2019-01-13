@@ -2,7 +2,7 @@ package com.pay.center.client.model;
 
 import java.util.Date;
 
-public class ChannelDO extends Entity {
+public class ChannelDO {
     private Long id;
 
     private Date gmtCreate;
@@ -26,6 +26,12 @@ public class ChannelDO extends Entity {
     private Boolean status;
 
     private String remark;
+
+    private Long platformId;
+
+    private String platformNumber;
+
+    private String platformName;
 
     public Long getId() {
         return id;
@@ -121,5 +127,29 @@ public class ChannelDO extends Entity {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public Long getPlatformId() {
+        return platformId;
+    }
+
+    public void setPlatformId(Long platformId) {
+        this.platformId = platformId;
+    }
+
+    public String getPlatformNumber() {
+        return platformNumber;
+    }
+
+    public void setPlatformNumber(String platformNumber) {
+        this.platformNumber = platformNumber == null ? null : platformNumber.trim();
+    }
+
+    public String getPlatformName() {
+        return platformName;
+    }
+
+    public void setPlatformName(String platformName) {
+        this.platformName = platformName == null ? null : platformName.trim();
     }
 }

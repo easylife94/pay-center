@@ -1,6 +1,6 @@
 package com.pay.center.client.vo;
 
-import com.pay.center.client.constant.ApiResultEnum;
+import com.pay.center.client.constants.ApiResultEnum;
 
 /**
  * API接口返回结果VO
