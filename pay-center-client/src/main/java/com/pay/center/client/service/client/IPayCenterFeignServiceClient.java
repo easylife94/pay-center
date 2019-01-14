@@ -1,9 +1,9 @@
 package com.pay.center.client.service.client;
 
 import com.pay.center.client.service.IPayCenterFeignService;
-import com.pay.center.client.service.hystric.PayCenterFeignServiceHystricImpl;
+import com.pay.center.client.service.hystric.PayCenterFeignServiceFallbackFactory;
+import com.pay.center.client.service.hystric.PayCenterFeignServiceFallback;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * feign服务客户端
@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author chenwei
  * @date 2019/1/14 16:26
  */
-@FeignClient(value = "pay-center", fallback = PayCenterFeignServiceHystricImpl.class)
+@FeignClient(value = "pay-center", fallback = PayCenterFeignServiceFallback.class, fallbackFactory = PayCenterFeignServiceFallbackFactory.class)
 public interface IPayCenterFeignServiceClient extends IPayCenterFeignService {
 }

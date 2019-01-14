@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @date 2019/1/14 14:11
  */
 @Component
-public class PayCenterFeignServiceHystricImpl implements IPayCenterFeignServiceClient {
+public class PayCenterFeignServiceFallback implements IPayCenterFeignServiceClient {
 
     @Override
     public String test() {
