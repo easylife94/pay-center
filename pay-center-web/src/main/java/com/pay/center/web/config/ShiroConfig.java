@@ -121,6 +121,9 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/swagger-resources/**", "anon");
         filterChainDefinitionMap.put("/v2/api-docs", "anon");
 
+        //服务调用
+        filterChainDefinitionMap.put("/service/**", "anon");
+
         filterChainDefinitionMap.put("/**", "authc");
         //未登陆跳转地址
         shiroFilterFactoryBean.setLoginUrl("/unAuth");

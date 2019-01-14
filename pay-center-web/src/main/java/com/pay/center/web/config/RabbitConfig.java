@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * RabbitMQ配置类
- * 消息队列统一在辅助项目配置
  *
  * @author chenwei
  * @date 2018-12-12
