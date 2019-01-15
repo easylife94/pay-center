@@ -8,7 +8,7 @@ package com.pay.center.client.constants;
  * @author chenwei
  * @date 2018-12-16
  */
-public class PayCenterMqNames {
+public class PayCenterMessageQueue {
 
 
     /**

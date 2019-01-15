@@ -1,6 +1,6 @@
 package com.pay.center.core.mq.rabbit;
 
-import com.pay.center.client.constants.PayCenterMqNames;
+import com.pay.center.client.constants.PayCenterMessageQueue;
 import com.pay.center.client.dto.mq.RegisterMerchantMsgDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,12 +18,12 @@ public class RabbitMqReceiver {
 
     public static final Logger logger = LoggerFactory.getLogger(RabbitMqReceiver.class);
 
-    @RabbitListener(queues = PayCenterMqNames.QUEUE_HELLO)
+    @RabbitListener(queues = PayCenterMessageQueue.QUEUE_HELLO)
     public void hello(String name) {
         logger.info("hi " + name);
     }
 
-    @RabbitListener(queues = PayCenterMqNames.QUEUE_REGISTER_MERCHANT)
+    @RabbitListener(queues = PayCenterMessageQueue.QUEUE_REGISTER_MERCHANT)
     public void registerMerchant(RegisterMerchantMsgDTO registerMerchantMsgDTO) {
         try {
             //TODO

@@ -1,7 +1,7 @@
 package com.pay.center.core.mq.rabbit;
 
 import com.pay.assist.client.constants.MsgQueueNames;
-import com.pay.center.client.constants.PayCenterMqNames;
+import com.pay.center.client.constants.PayCenterMessageQueue;
 import com.pay.center.client.dto.mq.RegisterMerchantMsgDTO;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class RabbitMqSender {
      * @param registerMerchantMsgDTO
      */
     public void sendRegisterMerchant(RegisterMerchantMsgDTO registerMerchantMsgDTO) {
-        amqpTemplate.convertAndSend(PayCenterMqNames.QUEUE_REGISTER_MERCHANT, registerMerchantMsgDTO);
+        amqpTemplate.convertAndSend(PayCenterMessageQueue.QUEUE_REGISTER_MERCHANT, registerMerchantMsgDTO);
     }
 
     /**
@@ -38,7 +38,7 @@ public class RabbitMqSender {
      * @param name
      */
     public void sendHello(String name) {
-        amqpTemplate.convertAndSend(PayCenterMqNames.QUEUE_HELLO, name);
+        amqpTemplate.convertAndSend(PayCenterMessageQueue.QUEUE_HELLO, name);
     }
 
 }

@@ -1,6 +1,6 @@
 package com.pay.center.web.config;
 
-import com.pay.center.client.constants.PayCenterMqNames;
+import com.pay.center.client.constants.PayCenterMessageQueue;
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +22,7 @@ public class RabbitConfig {
      */
     @Bean
     public Queue helloQueue() {
-        return new Queue(PayCenterMqNames.QUEUE_HELLO);
+        return new Queue(PayCenterMessageQueue.QUEUE_HELLO);
     }
 
     /**
@@ -32,7 +32,7 @@ public class RabbitConfig {
      */
     @Bean
     public Queue registerMerchantQueue() {
-        return new Queue(PayCenterMqNames.QUEUE_REGISTER_MERCHANT);
+        return new Queue(PayCenterMessageQueue.QUEUE_REGISTER_MERCHANT);
     }
 
 }
