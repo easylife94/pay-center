@@ -17,6 +17,11 @@ public class PayCenterMqNames {
     private static final String QUEUE_PREFIX = "pay.center.";
 
     /**
+     * 测试消息队列
+     */
+    public static final String QUEUE_HELLO = QUEUE_PREFIX + "hello";
+
+    /**
      * 进件商户消息队列
      */
     public static final String QUEUE_REGISTER_MERCHANT = QUEUE_PREFIX + "registerMerchant";

@@ -29,9 +29,16 @@ public class RabbitMqSender {
      * @param registerMerchantMsgDTO
      */
     public void sendRegisterMerchant(RegisterMerchantMsgDTO registerMerchantMsgDTO) {
-
         amqpTemplate.convertAndSend(PayCenterMqNames.QUEUE_REGISTER_MERCHANT, registerMerchantMsgDTO);
+    }
 
+    /**
+     * 发送测试消息
+     *
+     * @param name
+     */
+    public void sendHello(String name) {
+        amqpTemplate.convertAndSend(PayCenterMqNames.QUEUE_HELLO, name);
     }
 
 }
