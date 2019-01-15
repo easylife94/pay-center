@@ -1,4 +1,4 @@
-package com.pay.center.core.rest;
+package com.pay.center.web.rest;
 
 import com.pay.center.client.service.IPayCenterFeignService;
 import org.slf4j.Logger;
@@ -18,7 +18,6 @@ public class PayCenterFeignService implements IPayCenterFeignService {
 
     @Override
     public String test() {
-        logger.error("test service is available");
         return "service is available";
     }
 }
