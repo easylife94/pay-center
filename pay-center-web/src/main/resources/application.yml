@@ -8,16 +8,16 @@ spring:
   application:
     name: pay-center
 
-  ##freemarker
-  freemarker:
-    cache: false
-    check-template-location: true
-    charset: utf-8
-    suffix: .ftl
+    ##freemarker
+    freemarker:
+      cache: false
+      check-template-location: true
+      charset: utf-8
+      suffix: .ftl
 
-mybatis:
-  mapper-locations: /mapper/*.xml
-  configuration:
+    mybatis:
+      mapper-locations: /mapper/*.xml
+      configuration:
     ##启用从数据库列名A_COLUMN到驼峰大小写Java属性名aColumn的自动映射。
     map-underscore-to-camel-case: true
     ##允许JDBC支持生成的键
@@ -29,4 +29,7 @@ eureka:
   instance:
     prefer-ip-address: true
 
+feign:
+  hystrix:
+    enabled: true
 

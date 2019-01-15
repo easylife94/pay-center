@@ -10,7 +10,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication(scanBasePackages = {"com.pay.*"})
 @MapperScan("com.pay.center.core.dao")
 @EnableEurekaClient
-@EnableFeignClients
+@EnableFeignClients(basePackages = {"com.pay.*"})
 public class PayCenterWebApplication {
 
     public static void main(String[] args) {
