@@ -11,6 +11,6 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @author chenwei
  * @date 2019/1/14 16:26
  */
-@FeignClient(value = "pay-center", fallback = PayCenterFeignServiceFallback.class, fallbackFactory = PayCenterFeignServiceFallbackFactory.class)
+@FeignClient(value = "pay-center", fallbackFactory = PayCenterFeignServiceFallbackFactory.class)
 public interface IPayCenterFeignServiceClient extends IPayCenterFeignService {
 }

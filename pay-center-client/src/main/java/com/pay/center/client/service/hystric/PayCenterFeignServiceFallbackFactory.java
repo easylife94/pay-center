@@ -17,7 +17,7 @@ public class PayCenterFeignServiceFallbackFactory implements FallbackFactory<IPa
 
     @Override
     public IPayCenterFeignServiceClient create(Throwable throwable) {
-        logger.error("call service error:{}", throwable.getCause());
+        logger.error("call service error:{}", throwable.getMessage());
         return new PayCenterFeignServiceFallback();
     }
 }
