@@ -14,4 +14,6 @@ public interface MemberDao {
     int updateByPrimaryKeySelective(MemberDO record);
 
     int updateByPrimaryKey(MemberDO record);
+
+    MemberDO selectByMemberNumber(String memberNumber);
 }
