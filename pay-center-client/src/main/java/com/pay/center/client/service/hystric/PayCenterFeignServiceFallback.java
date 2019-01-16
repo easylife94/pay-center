@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author chenwei
  * @date 2019/1/14 14:11
-        */
+ */
 @Component
 public class PayCenterFeignServiceFallback implements IPayCenterFeignServiceClient {
 
@@ -22,7 +22,7 @@ public class PayCenterFeignServiceFallback implements IPayCenterFeignServiceClie
 
     @Override
     public ChannelDTO getMember(String memberNumber) {
-        logger.error("[PAY CENTER SERVICE]服务异常，返回null");
+        logger.error("[PAY CENTER SERVICE]服务异常，memberNumber:{}", memberNumber);
         return null;
     }
 }
