@@ -12,12 +12,14 @@ import java.util.List;
  */
 public class QueryDTO<T> implements Serializable {
 
+    private static final Integer DEFAULT_PAGE_SIZE = 20;
+
     /**
-     * 页大小
+     * 页大小,缺省值：20
      */
     private Integer pageSize;
     /**
-     * 当前页
+     * 当前页,缺省值：1
      */
     private Integer currentPage;
     /**
@@ -30,11 +32,19 @@ public class QueryDTO<T> implements Serializable {
      */
     private T query;
 
+    public QueryDTO() {
+        this.pageSize = DEFAULT_PAGE_SIZE;
+        this.currentPage = 1;
+    }
+
     public Integer getPageSize() {
         return pageSize;
     }
 
     public void setPageSize(Integer pageSize) {
+        if (pageSize == null) {
+            throw new NullPointerException("pageSize is null");
+        }
         if (pageSize < 0) {
             throw new IllegalArgumentException("pageSize < 0");
         }
@@ -46,6 +56,10 @@ public class QueryDTO<T> implements Serializable {
     }
 
     public void setCurrentPage(Integer currentPage) {
+
+        if (currentPage == null) {
+            throw new NullPointerException("currentPage is null");
+        }
         if (currentPage < 1) {
             throw new IllegalArgumentException("currentPage < 1");
         }
@@ -79,18 +93,5 @@ public class QueryDTO<T> implements Serializable {
             start = pageSize * (currentPage - 1);
         }
         return start;
-    }
-
-    /**
-     * 获取结束下标
-     *
-     * @return pageSize or currentPage is null return null
-     */
-    public Integer getEnd() {
-        Integer end = null;
-        if (pageSize != null && currentPage != null) {
-            end = pageSize * currentPage;
-        }
-        return end;
     }
 }

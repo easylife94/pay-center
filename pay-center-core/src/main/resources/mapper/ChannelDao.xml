@@ -210,4 +210,29 @@
         platform_name = #{platformName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="query" resultType="com.pay.center.client.model.ChannelDO">
+    select
+    <include refid="Base_Column_List" />
+    from channel
+    where
+    is_deleted = 0
+    <if test="query.channelNumber != null and query.channelNumber != ''">
+      and channel_number = #{query.channelNumber}
+    </if>
+    <if test="query.channelType != null and query.channelType != ''">
+      and channel_type = #{query.channelType}
+    </if>
+    <if test="query.channelPatter != null and query.channelPatter != ''">
+      and channel_pattern = #{query.channelPattern}
+    </if>
+    limit #{start},#{pageSize}
+    <if test="orders != null">
+      order by
+      <foreach collection="list" item="order" index="i" open="" separator="," close="">
+         #{order.filed} #{order.type}
+      </foreach>
+    </if>
+
+  </select>
 </mapper>
