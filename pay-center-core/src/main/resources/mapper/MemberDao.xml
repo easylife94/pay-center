@@ -232,4 +232,13 @@
       withdraw_settle_account_id = #{withdrawSettleAccountId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="selectByMemberNumber" resultType="com.pay.center.client.model.MemberDO">
+    select
+    <include refid="Base_Column_List" />
+    from member
+    where
+    is_deleted = 0
+    and member_number = #{memberNumber}
+  </select>
 </mapper>

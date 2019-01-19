@@ -1,14 +1,12 @@
 package com.pay.center.web.config;
 
-import com.pay.assist.client.constants.MsgQueueNames;
-import com.pay.center.client.constants.PayCenterMqNames;
+import com.pay.center.client.constants.PayCenterMessageQueue;
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * RabbitMQ配置类
- * 消息队列统一在辅助项目配置
  *
  * @author chenwei
  * @date 2018-12-12
@@ -24,7 +22,7 @@ public class RabbitConfig {
      */
     @Bean
     public Queue helloQueue() {
-        return new Queue(MsgQueueNames.QUEUE_HELLO);
+        return new Queue(PayCenterMessageQueue.QUEUE_HELLO);
     }
 
     /**
@@ -34,7 +32,7 @@ public class RabbitConfig {
      */
     @Bean
     public Queue registerMerchantQueue() {
-        return new Queue(PayCenterMqNames.QUEUE_REGISTER_MERCHANT);
+        return new Queue(PayCenterMessageQueue.QUEUE_REGISTER_MERCHANT);
     }
 
 }

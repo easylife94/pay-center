@@ -6,6 +6,8 @@ spring:
         service-id: pay-config-server
       profile: pay-center
 eureka:
+  instance:
+    hostname: pay-center
   client:
     service-url:
       defaultZone: http://pay-eureka-server:8761/eureka

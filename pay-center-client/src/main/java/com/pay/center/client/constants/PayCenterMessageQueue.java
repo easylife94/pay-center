@@ -8,13 +8,18 @@ package com.pay.center.client.constants;
  * @author chenwei
  * @date 2018-12-16
  */
-public class PayCenterMqNames {
+public class PayCenterMessageQueue {
 
 
     /**
      * 消息队列前缀
      */
     private static final String QUEUE_PREFIX = "pay.center.";
+
+    /**
+     * 测试消息队列
+     */
+    public static final String QUEUE_HELLO = QUEUE_PREFIX + "hello";
 
     /**
      * 进件商户消息队列
