@@ -1,6 +1,7 @@
 package com.pay.center.client.service;
 
 import com.pay.center.client.dto.service.ChannelDTO;
+import com.pay.center.client.dto.service.MemberDTO;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +18,7 @@ public interface IPayCenterFeignService {
     /**
      * 测试服务是否可用
      *
-     * @return
+     * @return 返回服务状态
      */
     @RequestMapping(value = "/service/test", method = RequestMethod.POST)
     String test();
@@ -26,8 +27,8 @@ public interface IPayCenterFeignService {
      * 获取会员
      *
      * @param memberNumber 会员编号
-     * @return
+     * @return 返回会员
      */
     @RequestMapping(value = "/service/member/{memberNumber}", method = RequestMethod.POST)
-    ChannelDTO getMember(@PathVariable("memberNumber") String memberNumber);
+    MemberDTO getMember(@PathVariable("memberNumber") String memberNumber);
 }

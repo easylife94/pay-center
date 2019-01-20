@@ -1,6 +1,7 @@
 package com.pay.center.client.service.hystric;
 
 import com.pay.center.client.dto.service.ChannelDTO;
+import com.pay.center.client.dto.service.MemberDTO;
 import com.pay.center.client.service.client.IPayCenterFeignServiceClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +22,7 @@ public class PayCenterFeignServiceFallback implements IPayCenterFeignServiceClie
     }
 
     @Override
-    public ChannelDTO getMember(String memberNumber) {
+    public MemberDTO getMember(String memberNumber) {
         logger.error("[PAY CENTER SERVICE]服务异常，memberNumber:{}", memberNumber);
         return null;
     }
