@@ -2,6 +2,8 @@ package com.pay.center.core.dao;
 
 import com.pay.center.client.model.MerchantDO;
 
+import java.util.List;
+
 public interface MerchantDao {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface MerchantDao {
     int updateByPrimaryKeySelective(MerchantDO record);
 
     int updateByPrimaryKey(MerchantDO record);
+
+    List<MerchantDO> selectBySelective(MerchantDO record);
 }

@@ -1,7 +1,5 @@
 package com.pay.center.core.service;
 
-import com.pay.center.client.dto.service.MemberDTO;
-
 /**
  * 会员服务接口
  *
@@ -10,11 +8,4 @@ import com.pay.center.client.dto.service.MemberDTO;
  */
 public interface IMemberService {
 
-    /**
-     * 获取会员
-     *
-     * @param memberNumber
-     * @return
-     */
-    MemberDTO getMember(String memberNumber);
 }

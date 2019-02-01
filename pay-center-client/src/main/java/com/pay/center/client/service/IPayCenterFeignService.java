@@ -1,10 +1,14 @@
 package com.pay.center.client.service;
 
-import com.pay.center.client.dto.service.ChannelDTO;
 import com.pay.center.client.dto.service.MemberDTO;
+import com.pay.center.client.dto.service.TradeMerchantDTO;
+import com.pay.center.client.dto.service.query.TradeMerchantQueryDTO;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 /**
  * feign服务接口
@@ -31,4 +35,13 @@ public interface IPayCenterFeignService {
      */
     @RequestMapping(value = "/service/member/{memberNumber}", method = RequestMethod.POST)
     MemberDTO getMember(@PathVariable("memberNumber") String memberNumber);
+
+    /**
+     * 获取可交易商户列表
+     *
+     * @param query 查询参数
+     * @return 可交易商户列表
+     */
+    @RequestMapping(value = "/service/listTradeMerchant", method = RequestMethod.POST)
+    List<TradeMerchantDTO> listTradeMerchant(@RequestBody TradeMerchantQueryDTO query);
 }

@@ -26,7 +26,7 @@ public class RabbitMqReceiver {
     @RabbitListener(queues = PayCenterMessageQueue.QUEUE_REGISTER_MERCHANT)
     public void registerMerchant(RegisterMerchantMsgDTO registerMerchantMsgDTO) {
         try {
-            //TODO
+            //TODO 进件处理
             logger.info("收到进件商户消息：{}", registerMerchantMsgDTO);
         } catch (Exception e) {
             e.printStackTrace();

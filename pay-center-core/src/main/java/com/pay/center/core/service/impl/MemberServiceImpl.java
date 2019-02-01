@@ -15,30 +15,14 @@ import org.springframework.stereotype.Service;
  * @date 2019/1/15 17:34
  */
 @Service
-public class MemberService implements IMemberService {
+public class MemberServiceImpl implements IMemberService {
 
     private final MemberDao memberDao;
     private final AgentDao agentDao;
 
     @Autowired
-    public MemberService(MemberDao memberDao, AgentDao agentDao) {
+    public MemberServiceImpl(MemberDao memberDao, AgentDao agentDao) {
         this.memberDao = memberDao;
         this.agentDao = agentDao;
-    }
-
-    @Override
-    public MemberDTO getMember(String memberNumber) {
-        MemberDO memberDO = memberDao.selectByMemberNumber(memberNumber);
-        if (memberDO != null) {
-            MemberDTO memberDTO = new MemberDTO();
-            BeanUtils.copyProperties(memberDTO, memberDO);
-
-            AgentDO agentDO = agentDao.selectByPrimaryKey(memberDO.getAgentId());
-            if(agentDO != null){
-                BeanUtils.copyProperties(memberDTO, agentDO);
-            }
-            return memberDTO;
-        }
-        return null;
     }
 }
