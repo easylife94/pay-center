@@ -66,7 +66,7 @@ public class PayCenterFeignService implements IPayCenterFeignService {
 
     @Override
     public List<TradeMerchantDTO> listTradeMerchant(TradeMerchantQueryDTO query) {
-
+        //todo
 
 
         return null;
