@@ -35,12 +35,12 @@ public enum DefrayalChannelEnum {
     /**
      * 银联
      */
-    UNINON("UNINON", "银联"),
+    UNION("UNION", "银联"),
 
     /**
-     * 线下汇款
+     * 线下
      */
-    OFFLINE_REMITTANCE("OFFLINE_REMITTANCE","线下")
+    OFFLINE("OFFLINE","线下")
     ;
 
     private String type;
