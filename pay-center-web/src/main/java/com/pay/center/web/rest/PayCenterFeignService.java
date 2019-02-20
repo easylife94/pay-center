@@ -53,11 +53,11 @@ public class PayCenterFeignService implements IPayCenterFeignService {
         MemberDO memberDO = memberDao.selectByMemberNumber(memberNumber);
         if (memberDO != null) {
             MemberDTO memberDTO = new MemberDTO();
-            BeanUtils.copyProperties(memberDTO, memberDO);
+            BeanUtils.copyProperties(memberDO, memberDTO);
 
             AgentDO agentDO = agentDao.selectByPrimaryKey(memberDO.getAgentId());
-            if(agentDO != null){
-                BeanUtils.copyProperties(memberDTO, agentDO);
+            if (agentDO != null) {
+                BeanUtils.copyProperties(agentDO, memberDTO);
             }
             return memberDTO;
         }
