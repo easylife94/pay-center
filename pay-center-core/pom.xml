@@ -39,16 +39,20 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- pay-client -->
+        <!-- pay-center-client -->
         <dependency>
             <groupId>com.pay</groupId>
             <artifactId>pay-center-client</artifactId>
         </dependency>
 
-        <!-- pay-assist-->
+        <!-- pay-common -->
         <dependency>
             <groupId>com.pay</groupId>
-            <artifactId>pay-assist-client</artifactId>
+            <artifactId>pay-common-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.pay</groupId>
+            <artifactId>pay-common-core</artifactId>
         </dependency>
 
         <!-- test-->

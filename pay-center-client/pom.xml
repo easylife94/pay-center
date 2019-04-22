@@ -39,5 +39,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
+
+        <!--pay-common-->
+        <dependency>
+            <groupId>com.pay</groupId>
+            <artifactId>pay-common-client</artifactId>
+        </dependency>
     </dependencies>
 </project>
