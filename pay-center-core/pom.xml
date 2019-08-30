@@ -45,6 +45,12 @@
             <artifactId>pay-center-client</artifactId>
         </dependency>
 
+        <!-- pay-assist -->
+        <dependency>
+            <groupId>com.pay</groupId>
+            <artifactId>pay-assist-client</artifactId>
+        </dependency>
+
         <!-- pay-common -->
         <dependency>
             <groupId>com.pay</groupId>
